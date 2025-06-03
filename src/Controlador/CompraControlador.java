@@ -123,5 +123,3 @@ public class CompraControlador {
         controlador.eliminarCompra(1);
     }
 }
-
-
