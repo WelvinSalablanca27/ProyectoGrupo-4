@@ -52,8 +52,7 @@ public class DetalleCompraControlador {
 
     // Método para actualizar un detalle de compra existente
     public void actualizarDetalleCompra(int id_DetalleCompra, int id_compra, int id_Producto,
-            Date Fe_Ingresado, Date Fe_caducidad, float precio, int cantidad) 
-         {
+            Date Fe_Ingresado, Date Fe_caducidad, float precio, int cantidad) {
         try {
             DetalleCompra detalle = new DetalleCompra();
             detalle.setId_DetalleCompra(id_DetalleCompra);
@@ -97,7 +96,7 @@ public class DetalleCompraControlador {
                         + ", Fecha_Ingres: " + det.getFe_Ingresado()
                         + ", Fecha_caducidad: " + det.getFe_caducidad()
                         + ", Precio: " + det.getPrecio()
-                        +", Cantidad: " + det.getCantidad());
+                        + ", Cantidad: " + det.getCantidad());
 
             }
         }
@@ -109,4 +108,3 @@ public class DetalleCompraControlador {
         controlador.eliminarDetalleCompra(2);
     }
 }
-
