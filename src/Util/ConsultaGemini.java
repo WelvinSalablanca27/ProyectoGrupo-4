@@ -9,7 +9,7 @@ import org.json.JSONObject;
 
 /**
  *
- * @author welvi
+ * @author Edith Cruz
  */
 public class ConsultaGemini {
 
@@ -59,14 +59,14 @@ public class ConsultaGemini {
     public String obtenerEsquemaBD() {
         return """
           Table Cliente {
-              id_Cliente int [pk, increment]
-              Nombre1 varchar(30)
-              Nombre2 varchar(30)
-              Apellido1 varchar(30)
-              Apellido2 varchar(30)
-              Direccion varchar(60)
-              Telefono varchar(8)
-            }
+                       id_Cliente int [pk, increment]
+                       Nombre1 varchar(30)
+                       Nombre2 varchar(30)
+                       Apellido1 varchar(30)
+                       Apellido2 varchar(30)
+                       Direccion varchar(60)
+                       Telefono varchar(8)
+                     }
             
             Table Producto {
               id_Producto int [pk, increment]
