@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Vista;
+  
 
 import Entidades.Proveedor;
 import Controlador.ProveedorControlador;
@@ -23,7 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 
 /**
- * @author Welvin
+ * @author Welvi
  */
 public class VistaCompra extends javax.swing.JPanel {
 
