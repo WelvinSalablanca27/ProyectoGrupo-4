@@ -32,7 +32,7 @@ public class DAOCompra {
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, compra.getId_Proveedor());
             stmt.setDate(2, new java.sql.Date(compra.getFe_compra().getTime()));
-             stmt.setFloat(3, compra.getTotalCompra());
+            stmt.setFloat(3, compra.getTotalCompra());
             stmt.executeUpdate();
 
             // Obtener el ID generado
