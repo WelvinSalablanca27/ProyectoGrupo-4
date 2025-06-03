@@ -11,7 +11,7 @@ import org.json.JSONObject;
  *
  * @author welvi
  */
-public class ConsultaGemini  {
+public class ConsultaGemini {
 
     private static final String API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
     private static final String API_KEY = "AIzaSyCBH7fdN76PWQX0e1IDW9n8HzOwHnDlrpI"; // Reemplaza con tu clave de API de Gemini

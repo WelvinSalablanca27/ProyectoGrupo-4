@@ -9,6 +9,7 @@ package Entidades;
  * @author welvi
  */
 public class Proveedor {
+
     private int id_Proveedor;
     private String Nombre_Proveedor;
     private String Telefono;
@@ -55,5 +56,5 @@ public class Proveedor {
     public void setTipo_distribuidor(String Tipo_distribuidor) {
         this.Tipo_distribuidor = Tipo_distribuidor;
     }
-    
+
 }

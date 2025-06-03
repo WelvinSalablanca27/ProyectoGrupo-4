@@ -12,7 +12,8 @@ import java.util.List;
  * @author welvi
  */
 public class Venta {
-     private int id_Ventas;
+
+    private int id_Ventas;
     private int id_Cliente;
     private int id_Producto;
     private Date Fe_Venta;
@@ -79,5 +80,4 @@ public class Venta {
         this.detalles = detalles;
     }
 
-    
 }

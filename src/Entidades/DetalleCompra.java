@@ -2,22 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package Entidades;
 
 import java.util.Date;
+
 /**
  *
-* @author welvin
+ * @author welvin
  */
 public class DetalleCompra {
-  private int id_DetalleCompra;
-  private int id_compra;
-  private int id_Producto;
-  private Date Fe_Ingresado ;
-  private Date Fe_caducidad ;
-  private float precio ;
-  private int cantidad;
+
+    private int id_DetalleCompra;
+    private int id_compra;
+    private int id_Producto;
+    private Date Fe_Ingresado;
+    private Date Fe_caducidad;
+    private float precio;
+    private int cantidad;
 
     public DetalleCompra() {
     }
@@ -89,6 +90,3 @@ public class DetalleCompra {
     }
 
 }
-
-
-

@@ -6,7 +6,6 @@ package Entidades;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
 public class Compra {
 
     private int id_compra;
-private int id_Proveedor;
+    private int id_Proveedor;
     private Date Fe_compra;
     private float totalCompra;
     private List<DetalleCompra> detalles;
@@ -74,4 +73,3 @@ private int id_Proveedor;
     }
 
 }
-

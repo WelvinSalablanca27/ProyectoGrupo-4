@@ -12,6 +12,7 @@ import java.util.Date;
  * @author XX3
  */
 public class Producto {
+
     private int id_producto;
     private String nombre_prod;
     private String Tipo_Prod;
@@ -89,4 +90,4 @@ public class Producto {
         this.fecha_caducidad = fecha_caducidad;
     }
 
-    }
+}
