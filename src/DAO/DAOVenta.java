@@ -103,7 +103,7 @@ public class DAOVenta {
                 System.out.println("ID Venta: " + ven.getId_Ventas()
                         + ", Cliente ID: " + ven.getId_Cliente()
                         + ", Fecha: " + ven.getFe_Venta()
-                        +  ", Total: " + ven.getTotalVenta());
+                        + ", Total: " + ven.getTotalVenta());
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());

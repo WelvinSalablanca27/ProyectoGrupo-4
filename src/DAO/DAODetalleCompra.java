@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  *
- * @author welvin
+ * @author welvi
  */
 public class DAODetalleCompra {
 
