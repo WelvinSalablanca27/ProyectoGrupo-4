@@ -121,4 +121,3 @@ public class VentaControlador {
         controlador.eliminarVenta(2);
     }
 }
-
