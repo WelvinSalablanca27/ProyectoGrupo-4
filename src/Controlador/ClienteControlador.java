@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author Edith Cruz
  */
 public class ClienteControlador {
+
     private final DAOCliente DAOcliente;
 
     public ClienteControlador() {
@@ -22,7 +23,7 @@ public class ClienteControlador {
     }
 
     // Método para crear un nuevo cliente
-    public void crearCliente( String Nombre1, String Nombre2, String Apellido1,
+    public void crearCliente(String Nombre1, String Nombre2, String Apellido1,
             String Apellido2, String Direccion, String Telefono) {
         try {
             Cliente cliente = new Cliente();
@@ -48,7 +49,8 @@ public class ClienteControlador {
             return null;
         }
     }
-public Cliente obtenerClientePorId(int idCliente) {
+
+    public Cliente obtenerClientePorId(int idCliente) {
         try {
             return DAOcliente.obtenerClientePorId(idCliente);
         } catch (SQLException e) {
@@ -61,7 +63,7 @@ public Cliente obtenerClientePorId(int idCliente) {
     public void actualizarCliente(int id_Cliente, String Nombre1, String Nombre2, String Apellido1,
             String Apellido2, String Direccion, String Telefono) {
         try {
-            Cliente cliente = new Cliente();        
+            Cliente cliente = new Cliente();
             cliente.setId_Cliente(id_Cliente);
             cliente.setNombre1(Nombre1);
             cliente.setNombre2(Nombre2);
@@ -91,21 +93,21 @@ public Cliente obtenerClientePorId(int idCliente) {
         ClienteControlador controlador = new ClienteControlador();
 
         // Crear un cliente
-         controlador.crearCliente("Juan", "Carlos", "Pérez", "Gómez", "Calle 123", "12345678");
+        controlador.crearCliente("Juan", "Carlos", "Pérez", "Gómez", "Calle 123", "12345678");
 
         // Leer todos los clientes
         List<Cliente> clientes = controlador.obtenerTodosCliente();
         if (clientes != null) {
             System.out.println("Lista de clientes:");
             for (Cliente cli : clientes) {
-                   System.out.println("ID: " + cli.getId_Cliente()
-                                      + ", Nombre1: " + cli.getNombre1()
-                                      + ", Nombre2: " + cli.getNombre2()
-                                      + ", Apellido1: " + cli.getApellido1()
-                                      + " , Apellido2:" + cli.getApellido2()
-                                      + ", Dirección: " + cli.getDireccion()
-                                      +  ", Telefono: " + cli.getTelefono());
-        }
+                System.out.println("ID: " + cli.getId_Cliente()
+                        + ", Nombre1: " + cli.getNombre1()
+                        + ", Nombre2: " + cli.getNombre2()
+                        + ", Apellido1: " + cli.getApellido1()
+                        + " , Apellido2:" + cli.getApellido2()
+                        + ", Dirección: " + cli.getDireccion()
+                        + ", Telefono: " + cli.getTelefono());
+            }
         }
 
         // Actualizar un cliente (suponiendo que ID 1 existe)
