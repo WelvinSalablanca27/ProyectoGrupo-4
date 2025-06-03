@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package Controlador;
 
 import DAO.DAOProducto;
@@ -20,6 +19,7 @@ import javax.swing.JOptionPane;
  * @author Azter Baez
  */
 public class ProductoControlador {
+
     private final DAOProducto DAOproducto;
 
     public ProductoControlador() {
@@ -36,8 +36,9 @@ public class ProductoControlador {
         }
     }
 // Método para crear un nuevo producto
+
     public void crearProducto(String Nombre_prod, String Tipo_Prod, double Existencia_Prod,
-                                double Precio_Costo, double precio_venta, Date fecha_caducidad) {
+            double Precio_Costo, double precio_venta, Date fecha_caducidad) {
         try {
             Producto producto = new Producto();
             producto.setNombre_prod(Nombre_prod);
@@ -52,7 +53,8 @@ public class ProductoControlador {
             JOptionPane.showMessageDialog(null, "Error al crear el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-     // Método para obtener todos los productos
+    // Método para obtener todos los productos
+
     public List<Producto> obtenerTodosProductos() {
         try {
             return DAOproducto.leerTodosProductos();
@@ -61,7 +63,8 @@ public class ProductoControlador {
             return null;
         }
     }
-     public Producto obtenerProductoPorId(int idProducto) {
+
+    public Producto obtenerProductoPorId(int idProducto) {
         try {
             return DAOproducto.obtenerProductoPorId(idProducto);
         } catch (SQLException e) {
@@ -69,10 +72,10 @@ public class ProductoControlador {
             return null;
         }
     }
-    
+
     // Método para actualizar un producto existente
     public void actualizarProducto(int id_producto, String Nombre_prod, String Tipo_Prod, double Existencia_Prod,
-                                     double Precio_Costo, double precio_venta, Date fecha_caducidad) {
+            double Precio_Costo, double precio_venta, Date fecha_caducidad) {
         try {
             Producto producto = new Producto();
             producto.setId_producto(id_producto);
@@ -98,6 +101,7 @@ public class ProductoControlador {
             JOptionPane.showMessageDialog(null, "Error al eliminar el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     public static void main(String[] args) {
         ProductoControlador controlador = new ProductoControlador();
 
@@ -113,20 +117,20 @@ public class ProductoControlador {
         } catch (SQLException e) {
             System.err.println("❌ Error en ejecución: " + e.getMessage());
         }
-         // Leer todos los productos
-       List<Producto> producto = controlador.obtenerTodosProductos();
-            if (producto != null) {
-                System.out.println("Lista de productos:");
-                for (Producto p : producto) {
-                    System.out.println("id_producto: " + p.getId_producto()
-                            + ", Nombre_Prod: " + p.getNombre_prod()
-                            + ", Tipo_Prod: " + p.getTipo_Prod()
-                            + ", Existencia_Prod: " + p.getExistencia_Prod()
-                            + ", Precio_Costo: " + p.getPrecio_Costo()
-                            + ", Precio_Venta: " + p.getPrecio_Venta()
-                            + ", Fecha_Caducidad: " + p.getFecha_caducidad());
-                }
+        // Leer todos los productos
+        List<Producto> producto = controlador.obtenerTodosProductos();
+        if (producto != null) {
+            System.out.println("Lista de productos:");
+            for (Producto p : producto) {
+                System.out.println("id_producto: " + p.getId_producto()
+                        + ", Nombre_Prod: " + p.getNombre_prod()
+                        + ", Tipo_Prod: " + p.getTipo_Prod()
+                        + ", Existencia_Prod: " + p.getExistencia_Prod()
+                        + ", Precio_Costo: " + p.getPrecio_Costo()
+                        + ", Precio_Venta: " + p.getPrecio_Venta()
+                        + ", Fecha_Caducidad: " + p.getFecha_caducidad());
             }
-            
         }
+
     }
+}
