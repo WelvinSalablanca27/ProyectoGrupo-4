@@ -21,7 +21,7 @@ public class DAODetalles_Venta {
                             id_venta, 
                             id_producto, 
                              PrecioUnitario,
-                            cantidad_producto, 
+                            cantidad_producto
                         ) VALUES (?, ?, ?, ?)""";
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {

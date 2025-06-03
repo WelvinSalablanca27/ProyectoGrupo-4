@@ -63,25 +63,26 @@ public class DAOProducto {
     }
 
     public Producto obtenerProductoPorId(int idProducto) throws SQLException {
-    String sql = "SELECT * FROM Producto WHERE id_producto = ?";
-    Producto producto = null;
+        String sql = "SELECT * FROM Producto WHERE id_producto = ?";
+        Producto producto = null;
 
-    try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
-        stmt.setInt(1, idProducto);
-        try (ResultSet rs = stmt.executeQuery()) {
-            if (rs.next()) {
-                producto = new Producto();
-                producto.setId_producto(rs.getInt("id_producto"));
-                producto.setNombre_prod(rs.getString("Nombre_prod"));
-                producto.setTipo_Prod(rs.getString("Tipo_Prod"));
-                producto.setPrecio_Costo(rs.getFloat("Precio_Costo"));
-                producto.setPrecio_Venta(rs.getFloat("Precio_Venta"));
-                producto.setFecha_caducidad(rs.getDate("Fecha"));
+        try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
+            stmt.setInt(1, idProducto);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    producto = new Producto();
+                    producto.setId_producto(rs.getInt("id_producto"));
+                    producto.setNombre_prod(rs.getString("Nombre_prod"));
+                    producto.setTipo_Prod(rs.getString("Tipo_Prod"));
+                    producto.setPrecio_Costo(rs.getFloat("Precio_Costo"));
+                    producto.setPrecio_Venta(rs.getFloat("Precio_Venta"));
+                    producto.setFecha_caducidad(rs.getDate("Fecha"));
+                }
             }
         }
+        return producto;
     }
-    return producto;
-}
+
     public void actualizarProducto(Producto producto) throws SQLException {
         String sql = """
                 UPDATE Producto 
@@ -131,21 +132,20 @@ public class DAOProducto {
             dao.eliminarProducto(1); // ID a eliminar
             System.out.println("Compra eliminada.");
 
-             List<Producto> Producto =  dao.leerTodosProductos();
-                System.out.println("Lista de producto:");
-                for (Producto p : Producto) {
-                    System.out.println("id_producto: " + p.getId_producto()
-                            + ", Nombre_Prod: " + p.getNombre_prod()
-                            + ", Tipo_Prod: " + p.getTipo_Prod()
-                            + ", Existencia_Prod: " + p.getExistencia_Prod()
-                            + ", Precio_Costo: " + p.getPrecio_Costo()
-                            + ", Precio_Venta: " + p.getPrecio_Venta()
-                            + ", Fecha_Caducidad: " + p.getFecha_caducidad());
-                }
-            }catch (SQLException e) {
+            List<Producto> Producto = dao.leerTodosProductos();
+            System.out.println("Lista de producto:");
+            for (Producto p : Producto) {
+                System.out.println("id_producto: " + p.getId_producto()
+                        + ", Nombre_Prod: " + p.getNombre_prod()
+                        + ", Tipo_Prod: " + p.getTipo_Prod()
+                        + ", Existencia_Prod: " + p.getExistencia_Prod()
+                        + ", Precio_Costo: " + p.getPrecio_Costo()
+                        + ", Precio_Venta: " + p.getPrecio_Venta()
+                        + ", Fecha_Caducidad: " + p.getFecha_caducidad());
+            }
+        } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());
         }
-        }
-
     }
 
+}
