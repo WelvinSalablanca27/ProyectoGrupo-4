@@ -10,4 +10,61 @@ package Entidades;
  */
 public class Detalles_Venta {
     
+     private int id_DetalleVenta;
+    private int id_Venta;
+    private int id_Producto;
+    private float precioUnitario;
+    private int cantidad_Producto;
+
+    public Detalles_Venta() {
+    }
+
+    public Detalles_Venta(int id_DetalleVenta, int id_Venta, int id_Producto, float precioUnitario, int cantidad_Producto) {
+        this.id_DetalleVenta = id_DetalleVenta;
+        this.id_Venta = id_Venta;
+        this.id_Producto = id_Producto;
+        this.precioUnitario = precioUnitario;
+        this.cantidad_Producto = cantidad_Producto;
+    }
+
+    public int getId_DetalleVenta() {
+        return id_DetalleVenta;
+    }
+
+    public void setId_DetalleVenta(int id_DetalleVenta) {
+        this.id_DetalleVenta = id_DetalleVenta;
+    }
+
+    public int getId_Venta() {
+        return id_Venta;
+    }
+
+    public void setId_Venta(int id_Venta) {
+        this.id_Venta = id_Venta;
+    }
+
+    public int getId_Producto() {
+        return id_Producto;
+    }
+
+    public void setId_Producto(int id_Producto) {
+        this.id_Producto = id_Producto;
+    }
+
+    public float getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public void setPrecioUnitario(float precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
+
+    public int getCantidad_Producto() {
+        return cantidad_Producto;
+    }
+
+    public void setCantidad_Producto(int cantidad_Producto) {
+        this.cantidad_Producto = cantidad_Producto;
+    }
+    
 }
