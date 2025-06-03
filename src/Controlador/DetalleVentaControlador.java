@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Welvin
+ * @author Welvi
  */
 public class DetalleVentaControlador {
 
