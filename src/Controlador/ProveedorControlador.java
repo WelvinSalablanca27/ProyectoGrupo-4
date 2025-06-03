@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author welvi
+ * @author Welvi
  */
 public class ProveedorControlador {
 

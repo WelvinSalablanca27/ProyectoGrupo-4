@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  *
- * @author welvi
+ * @author Welvi
  */
 public class DAOProveedor {
 
