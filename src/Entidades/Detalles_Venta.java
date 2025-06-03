@@ -10,7 +10,7 @@ package Entidades;
  */
 public class Detalles_Venta {
     
-     private int id_DetalleVenta;
+    private int id_DetalleVenta;
     private int id_Venta;
     private int id_Producto;
     private float precioUnitario;
