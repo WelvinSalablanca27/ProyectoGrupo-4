@@ -4,7 +4,7 @@
  */
 package Vista;
 
-import Controlador.ConsultaDinamicaControlador;
+import Controlador.ControladorConsultaDinamica;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -14,14 +14,14 @@ import java.util.List;
  */
 public class VistaConsultasDinamicas extends javax.swing.JPanel {
 
-    private final ConsultaDinamicaControlador controlador;
+    private final ControladorConsultaDinamica controlador;
 
     /**
      * Creates new form VistaConsultasDinamicas
      */
     public VistaConsultasDinamicas() {
         initComponents();
-        this.controlador = new ConsultaDinamicaControlador();
+        this.controlador = new ControladorConsultaDinamica();
 
         tablaResultados.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
