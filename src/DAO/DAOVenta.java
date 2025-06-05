@@ -27,7 +27,8 @@ public class DAOVenta {
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, venta.getId_Cliente());
-            stmt.setTimestamp(2, new java.sql.Timestamp(venta.getFe_Venta().getTime()));
+            stmt.setDate(2, new java.sql.Date(venta.getFe_Venta().getTime()));
+            stmt.setTimestamp(3, new java.sql.Timestamp(venta.getFe_Venta().getTime()));
             stmt.setFloat(3, venta.getTotal_Venta());
             stmt.executeUpdate();
 
@@ -63,9 +64,10 @@ public class DAOVenta {
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
             stmt.setInt(1, venta.getId_Cliente());
-            stmt.setTimestamp(2, new java.sql.Timestamp(venta.getFe_Venta().getTime()));
-            stmt.setFloat(3, venta.getTotal_Venta());
-            stmt.setInt(4, venta.getId_Ventas());
+            stmt.setDate(2, new java.sql.Date(venta.getFe_Venta().getTime()));
+            stmt.setTimestamp(3, new java.sql.Timestamp(venta.getFe_Venta().getTime()));
+            stmt.setFloat(4, venta.getTotal_Venta());
+            stmt.setInt(5, venta.getId_Ventas());
             stmt.executeUpdate();
         }
     }

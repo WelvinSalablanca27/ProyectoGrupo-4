@@ -95,7 +95,7 @@ public class VentaControlador {
         List<Detalles_Venta> detalles = new ArrayList<>();
         Detalles_Venta detalle1 = new Detalles_Venta();
         detalle1.setId_Producto(1);
-        detalle1.setPrecioUnitario(33.22f); // Updated to match assumed Detalles_Venta setter
+        detalle1.setPrecio_venta(33.22f); // Updated to match assumed Detalles_Venta setter
         detalle1.setCantidad_Producto(11); // Updated to match assumed Detalles_Venta setter
         detalles.add(detalle1);
 

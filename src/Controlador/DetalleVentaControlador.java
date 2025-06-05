@@ -23,12 +23,12 @@ public class DetalleVentaControlador {
     }
 
     // Método para crear un nuevo detalle de venta
-    public void crearDetalleVenta(int idDetalleVenta, int idProducto, float precioUnitario, int cantidadProducto) {
+    public void crearDetalleVenta(int idDetalleVenta, int idProducto, double Precio_venta, int cantidadProducto) {
         try {
             Detalles_Venta detalle = new Detalles_Venta();
             detalle.setId_DetalleVenta(idDetalleVenta);
             detalle.setId_Producto(idProducto);
-            detalle.setPrecioUnitario(precioUnitario);
+            detalle.setPrecio_venta(Precio_venta);
             detalle.setCantidad_Producto(cantidadProducto);
             DAOdetalleVenta.crearDetalles_Venta(detalle);
             JOptionPane.showMessageDialog(null, "Detalle de venta creado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -48,13 +48,13 @@ public class DetalleVentaControlador {
     }
 
     // Método para actualizar un detalle de venta existente
-    public void actualizarDetalleVenta(int idDetalleVenta, int idProducto, int idVenta, float precioUnitario, int cantidadProducto) {
+    public void actualizarDetalleVenta(int idDetalleVenta, int idProducto, int idVenta, double Precio_venta, int cantidadProducto) {
         try {
             Detalles_Venta detalle = new Detalles_Venta();
             detalle.setId_DetalleVenta(idDetalleVenta);
             detalle.setId_Producto(idProducto);
             detalle.setId_Venta(idVenta);
-            detalle.setPrecioUnitario(precioUnitario);
+            detalle.setPrecio_venta(Precio_venta);
             detalle.setCantidad_Producto(cantidadProducto);
             DAOdetalleVenta.actualizarDetalleVenta(detalle);
             JOptionPane.showMessageDialog(null, "Detalle de venta actualizado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -88,7 +88,7 @@ public class DetalleVentaControlador {
                 System.out.println("ID: " + d.getId_DetalleVenta()
                         + ", Venta ID: " + d.getId_Venta()
                         + ", Producto ID: " + d.getId_Producto()
-                        + ", Precio: " + d.getPrecioUnitario()
+                        + ", Precio: " + d.getPrecio_venta()
                         + ", Cantidad: " + d.getCantidad_Producto());
             }
         }

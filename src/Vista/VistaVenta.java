@@ -30,8 +30,8 @@ public class VistaVenta extends javax.swing.JPanel {
 
     private final VentaControlador ventaControlador;
     private final DetalleVentaControlador detalleVentaControlador;
-  private final ClienteControlador clienteControlador;   
-  private final ProductoControlador productoControlador;
+    private final ClienteControlador clienteControlador;
+    private final ProductoControlador productoControlador;
     private Integer idClienteSeleccionado = null;
     private Integer idProductoSeleccionado = null;
     private Timer timer; // Variable de instancia para el Timer
@@ -414,7 +414,7 @@ public class VistaVenta extends javax.swing.JPanel {
                 String nombreCliente = cliente.getNombre1() + " " + cliente.getApellido1();
 
                 if (textoBusqueda.isEmpty()
-                    || nombreCliente.toLowerCase().contains(textoBusqueda)) {
+                        || nombreCliente.toLowerCase().contains(textoBusqueda)) {
                     Object[] fila = {
                         v.getId_Ventas(),
                         v.getFe_Venta(),
@@ -442,8 +442,8 @@ public class VistaVenta extends javax.swing.JPanel {
             List<Cliente> clientes = clienteControlador.obtenerTodosCliente();
             int id_Cliente = clientes.get(indiceCliente).getId_Cliente();
 
-            Date fechaVenta = selectorfechaVenta.getDate();
-            if (fechaVenta == null) {
+            Date Fe_Venta = selectorfechaVenta.getDate();
+            if (Fe_Venta == null) {
                 JOptionPane.showMessageDialog(this, "Seleccione una fecha.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -459,20 +459,20 @@ public class VistaVenta extends javax.swing.JPanel {
             float total_Venta = 0;
             for (int i = 0; i < rowCount; i++) {
                 int idProducto = (int) modelDetalles.getValueAt(i, 0);
-                float precioUnitario = ((Number) modelDetalles.getValueAt(i, 2)).floatValue();
+                double Precio_venta = ((Number) modelDetalles.getValueAt(i, 2)).floatValue();
                 int cantidad = (int) modelDetalles.getValueAt(i, 3);
                 float subtotal = ((Number) modelDetalles.getValueAt(i, 4)).floatValue();
 
                 Detalles_Venta detalle = new Detalles_Venta();
                 detalle.setId_Producto(idProducto);
                 detalle.setCantidad_Producto(cantidad);
-                detalle.setPrecioUnitario(precioUnitario);
+                detalle.setPrecio_venta(Precio_venta);
                 detalles.add(detalle);
 
                 total_Venta += subtotal;
             }
 
-            ventaControlador.crearVenta(id_Cliente, fechaVenta, total_Venta, detalles);
+            ventaControlador.crearVenta(id_Cliente, Fe_Venta, total_Venta, detalles);
 
             limpiar();
             cargarDatosTablaVenta();
@@ -498,9 +498,9 @@ public class VistaVenta extends javax.swing.JPanel {
 
             // Confirmar con el usuario antes de eliminar
             int confirmacion = JOptionPane.showConfirmDialog(this,
-                "¿Está seguro de que desea eliminar la venta con ID " + idVenta + "?",
-                "Confirmar Eliminación",
-                JOptionPane.YES_NO_OPTION);
+                    "¿Está seguro de que desea eliminar la venta con ID " + idVenta + "?",
+                    "Confirmar Eliminación",
+                    JOptionPane.YES_NO_OPTION);
             if (confirmacion == JOptionPane.YES_OPTION) {
                 // Eliminar la venta
                 ventaControlador.eliminarVenta(idVenta);
@@ -534,8 +534,8 @@ public class VistaVenta extends javax.swing.JPanel {
             List<Cliente> clientes = clienteControlador.obtenerTodosCliente();
             int idCliente = clientes.get(indiceCliente).getId_Cliente();
 
-            Date fechaVenta = selectorfechaVenta.getDate();
-            if (fechaVenta == null) {
+            Date Fe_Venta = selectorfechaVenta.getDate();
+            if (Fe_Venta == null) {
                 JOptionPane.showMessageDialog(this, "Seleccione una fecha.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -553,7 +553,7 @@ public class VistaVenta extends javax.swing.JPanel {
             }
 
             // Actualizar la venta principal
-            ventaControlador.actualizarVenta(idVenta, idCliente, fechaVenta, totalVenta);
+            ventaControlador.actualizarVenta(idVenta, idCliente, Fe_Venta, totalVenta);
 
             // Eliminar los detalles anteriores
             List<Detalles_Venta> detallesAntiguos = detalleVentaControlador.obtenerTodosDetalleVenta();
@@ -656,9 +656,9 @@ public class VistaVenta extends javax.swing.JPanel {
                             Object[] row = {
                                 detalle.getId_Producto(),
                                 nombreProducto,
-                                detalle.getPrecioUnitario(),
+                                detalle.getPrecio_venta(),
                                 detalle.getCantidad_Producto(),
-                                detalle.getPrecioUnitario()* detalle.getCantidad_Producto()// Subtotal
+                                detalle.getPrecio_venta() * detalle.getCantidad_Producto()// Subtotal
                             };
                             modelDetalles.addRow(row);
                         }
@@ -672,7 +672,7 @@ public class VistaVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_tablaVentaMouseClicked
 
     private void accionBotonDetalleAgregar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonDetalleAgregar
-                try {
+        try {
             // Obtener el índice seleccionado del comboProductos
             int indiceSeleccionado = comboProducto.getSelectedIndex();
             if (indiceSeleccionado < 0) {
