@@ -93,7 +93,7 @@ public class DetalleCompraControlador {
             for (DetalleCompra det : detalles) {
                 System.out.println("ID: " + det.getId_DetalleCompra()
                         + ", Compra ID: " + det.getId_compra()
-                        + ", Fecha_Ingres: " + det.getFe_Ingresado()
+                        + ", Fecha_Ingreso: " + det.getFe_Ingresado()
                         + ", Fecha_caducidad: " + det.getFe_caducidad()
                         + ", Precio: " + det.getPrecio()
                         + ", Cantidad: " + det.getCantidad());

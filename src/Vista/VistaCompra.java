@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Vista;
-  
 
 import Entidades.Proveedor;
 import Controlador.ProveedorControlador;
@@ -72,8 +71,9 @@ public class VistaCompra extends javax.swing.JPanel {
         FechaCaducidad.setDate(new Date());
 
         // Limpiar la tabla de detalles
-        tablaDetalles.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID Producto ", "Producto", "Precio ", "FechaIngreso",
-            "FechaCaducidad", "Cantidad", "Subtotal"}));
+        tablaDetalles.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID Producto", "Producto", "Precio", "FechaIngreso", "FechaCaducidad",
+            "Cantidad", "Subtotal"}
+        ));
 
         cargarDatosTablaCompras();
         cargarProveedor();
@@ -544,8 +544,10 @@ public class VistaCompra extends javax.swing.JPanel {
                                 detalle.getId_Producto(),
                                 nombreProducto,
                                 detalle.getPrecio(),
-                                detalle.getCantidad(),
-                                detalle.getPrecio()* detalle.getCantidad() // Subtotal
+                                detalle.getFe_Ingresado(), // columna 3
+                                detalle.getFe_caducidad(), // columna 4
+                                detalle.getCantidad(), // columna 5
+                                detalle.getPrecio() * detalle.getCantidad() // Subtotal
                             };
                             modelDetalles.addRow(row);
                         }
@@ -571,8 +573,8 @@ public class VistaCompra extends javax.swing.JPanel {
                 String totalCompraStr = String.valueOf(comp.getTotalCompra());
 
                 if (textoBusqueda.isEmpty()
-                    || idProveedorStr.contains(textoBusqueda)
-                    || totalCompraStr.contains(textoBusqueda)) {
+                        || idProveedorStr.contains(textoBusqueda)
+                        || totalCompraStr.contains(textoBusqueda)) {
 
                     Object[] fila = {
                         comp.getId_compra(),
@@ -601,9 +603,9 @@ public class VistaCompra extends javax.swing.JPanel {
 
             // Confirmar con el usuario antes de eliminar
             int confirmacion = JOptionPane.showConfirmDialog(this,
-                "¿Está seguro de que desea eliminar la venta con ID " + idCompra + "?",
-                "Confirmar Eliminación",
-                JOptionPane.YES_NO_OPTION);
+                    "¿Está seguro de que desea eliminar la venta con ID " + idCompra + "?",
+                    "Confirmar Eliminación",
+                    JOptionPane.YES_NO_OPTION);
             if (confirmacion == JOptionPane.YES_OPTION) {
                 // Eliminar la venta
                 compraControlador.eliminarCompra(idCompra);
@@ -699,16 +701,16 @@ public class VistaCompra extends javax.swing.JPanel {
             // Limpiar la tabla de detalles y el formulario
             tablaDetalles.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID Producto ", "Producto", "Precio ", "FechaIngreso",
                 "FechaCaducidad", "Cantidad", "Subtotal"}));
-    limpiar();
+            limpiar();
 
-    // Recargar la tabla de compras
-    cargarDatosTablaCompras();
+            // Recargar la tabla de compras
+            cargarDatosTablaCompras();
 
-    // Habilitar botones nuevamente
-    btnEliminar.setEnabled(true);
-    btnGuardar.setEnabled(true);
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al actualizar la venta: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            // Habilitar botones nuevamente
+            btnEliminar.setEnabled(true);
+            btnGuardar.setEnabled(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar la venta: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnActualizaraccionBotonActualizar
 

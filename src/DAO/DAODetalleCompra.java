@@ -113,7 +113,7 @@ public class DAODetalleCompra {
             for (DetalleCompra det : detalles) {
                 System.out.println("ID: " + det.getId_DetalleCompra()
                         + ", Compra ID: " + det.getId_compra()
-                        + ", Fecha_Ingres: " + det.getFe_Ingresado()
+                        + ", Fecha_Ingreso: " + det.getFe_Ingresado()
                         + ", Fecha_caducidad: " + det.getFe_caducidad()
                         + ", precio: " + det.getPrecio()
                         + ", Cantidad: " + det.getCantidad());

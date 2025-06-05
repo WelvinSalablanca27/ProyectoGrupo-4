@@ -5,6 +5,10 @@
         <group>
             <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Vista/VistaVenta.java</file>
             <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Controlador/VentaControlador.java</file>
+            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/DAO/DAOVenta.java</file>
+            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/DAO/DAODetalleCompra.java</file>
+            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Controlador/DetalleCompraControlador.java</file>
+            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Vista/VistaCompra.java</file>
         </group>
     </open-files>
 </project-private>
