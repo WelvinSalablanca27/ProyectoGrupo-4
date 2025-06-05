@@ -22,13 +22,13 @@ public class DAOVenta {
                         id_Cliente, 
                         Fe_venta,
                         total_venta
-                    ) VALUES (?, ?, ?, ?)""";
+                    ) VALUES (?, ?, ?)""";
         int generatedId = -1;
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, venta.getId_Cliente());
             stmt.setTimestamp(2, new java.sql.Timestamp(venta.getFe_Venta().getTime()));
-            stmt.setFloat(3, venta.getTotalVenta());
+            stmt.setFloat(3, venta.getTotal_Venta());
             stmt.executeUpdate();
 
             // Obtener el ID generado
@@ -51,7 +51,7 @@ public class DAOVenta {
                 venta.setId_Ventas(rs.getInt("id_ventas"));
                 venta.setId_Cliente(rs.getInt("id_Cliente"));
                 venta.setFe_Venta(rs.getTimestamp("Fe_venta"));
-                venta.setTotalVenta(rs.getFloat("total_venta"));
+                venta.setTotal_Venta(rs.getFloat("total_venta"));
                 ventas.add(venta);
             }
         }
@@ -64,7 +64,7 @@ public class DAOVenta {
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
             stmt.setInt(1, venta.getId_Cliente());
             stmt.setTimestamp(2, new java.sql.Timestamp(venta.getFe_Venta().getTime()));
-            stmt.setFloat(3, venta.getTotalVenta());
+            stmt.setFloat(3, venta.getTotal_Venta());
             stmt.setInt(4, venta.getId_Ventas());
             stmt.executeUpdate();
         }
@@ -88,7 +88,7 @@ public class DAOVenta {
             venta.setId_Ventas(1); // ID existente
             venta.setId_Cliente(1);
             venta.setFe_Venta(new java.util.Date());
-            venta.setTotalVenta(500.0f);
+            venta.setTotal_Venta(500.0f);
             dao.actualizarVenta(venta);
             System.out.println("Venta actualizada.");
 
@@ -103,7 +103,7 @@ public class DAOVenta {
                 System.out.println("ID Venta: " + ven.getId_Ventas()
                         + ", Cliente ID: " + ven.getId_Cliente()
                         + ", Fecha: " + ven.getFe_Venta()
-                        + ", Total: " + ven.getTotalVenta());
+                        + ", Total: " + ven.getTotal_Venta());
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());

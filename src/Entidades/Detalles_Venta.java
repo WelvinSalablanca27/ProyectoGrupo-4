@@ -13,17 +13,17 @@ public class Detalles_Venta {
     private int id_DetalleVenta;
     private int id_Venta;
     private int id_Producto;
-    private float precioUnitario;
+    private double  precio_venta;
     private int cantidad_Producto;
 
     public Detalles_Venta() {
     }
 
-    public Detalles_Venta(int id_DetalleVenta, int id_Venta, int id_Producto, float precioUnitario, int cantidad_Producto) {
+    public Detalles_Venta(int id_DetalleVenta, int id_Venta, int id_Producto, double precio_venta, int cantidad_Producto) {
         this.id_DetalleVenta = id_DetalleVenta;
         this.id_Venta = id_Venta;
         this.id_Producto = id_Producto;
-        this.precioUnitario = precioUnitario;
+        this.precio_venta = precio_venta;
         this.cantidad_Producto = cantidad_Producto;
     }
 
@@ -51,12 +51,12 @@ public class Detalles_Venta {
         this.id_Producto = id_Producto;
     }
 
-    public float getPrecioUnitario() {
-        return precioUnitario;
+    public double getPrecio_venta() {
+        return precio_venta;
     }
 
-    public void setPrecioUnitario(float precioUnitario) {
-        this.precioUnitario = precioUnitario;
+    public void setPrecio_venta(double precio_venta) {
+        this.precio_venta = precio_venta;
     }
 
     public int getCantidad_Producto() {

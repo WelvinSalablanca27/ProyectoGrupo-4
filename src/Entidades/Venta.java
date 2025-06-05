@@ -17,18 +17,18 @@ public class Venta {
     private int id_Cliente;
     private int id_Producto;
     private Date Fe_Venta;
-    private float totalVenta;
+    private float total_Venta;
     private List<Detalles_Venta> detalles;
 
     public Venta() {
     }
 
-    public Venta(int id_Ventas, int id_Cliente, int id_Producto, Date Fe_Venta, float totalVenta, List<Detalles_Venta> detalles) {
+    public Venta(int id_Ventas, int id_Cliente, int id_Producto, Date Fe_Venta, float total_Venta, List<Detalles_Venta> detalles) {
         this.id_Ventas = id_Ventas;
         this.id_Cliente = id_Cliente;
         this.id_Producto = id_Producto;
         this.Fe_Venta = Fe_Venta;
-        this.totalVenta = totalVenta;
+        this.total_Venta = total_Venta;
         this.detalles = detalles;
     }
 
@@ -64,12 +64,12 @@ public class Venta {
         this.Fe_Venta = Fe_Venta;
     }
 
-    public float getTotalVenta() {
-        return totalVenta;
+    public float getTotal_Venta() {
+        return total_Venta;
     }
 
-    public void setTotalVenta(float totalVenta) {
-        this.totalVenta = totalVenta;
+    public void setTotal_Venta(float total_Venta) {
+        this.total_Venta = total_Venta;
     }
 
     public List<Detalles_Venta> getDetalles() {
@@ -79,5 +79,6 @@ public class Venta {
     public void setDetalles(List<Detalles_Venta> detalles) {
         this.detalles = detalles;
     }
+
 
 }

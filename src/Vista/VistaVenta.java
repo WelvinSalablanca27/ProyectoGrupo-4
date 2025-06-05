@@ -115,7 +115,7 @@ public class VistaVenta extends javax.swing.JPanel {
                     v.getId_Ventas(),
                     v.getFe_Venta(),
                     NombreCliente,
-                    v.getTotalVenta()
+                    v.getTotal_Venta()
                 };
                 model.addRow(row);
             }
@@ -341,7 +341,7 @@ public class VistaVenta extends javax.swing.JPanel {
         btnAgregarDetalle.setText("Agregar");
         btnAgregarDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarDetalleaccionBotonAgregarDetalle(evt);
+                accionBotonDetalleAgregar(evt);
             }
         });
         jPanel1.add(btnAgregarDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(652, 37, 96, 33));
@@ -419,7 +419,7 @@ public class VistaVenta extends javax.swing.JPanel {
                         v.getId_Ventas(),
                         v.getFe_Venta(),
                         nombreCliente,
-                        v.getTotalVenta()
+                        v.getTotal_Venta()
                     };
                     modelo.addRow(fila);
                 }
@@ -440,7 +440,7 @@ public class VistaVenta extends javax.swing.JPanel {
             }
 
             List<Cliente> clientes = clienteControlador.obtenerTodosCliente();
-            int idCliente = clientes.get(indiceCliente).getId_Cliente();
+            int id_Cliente = clientes.get(indiceCliente).getId_Cliente();
 
             Date fechaVenta = selectorfechaVenta.getDate();
             if (fechaVenta == null) {
@@ -456,7 +456,7 @@ public class VistaVenta extends javax.swing.JPanel {
             }
 
             List<Detalles_Venta> detalles = new ArrayList<>();
-            float totalVenta = 0;
+            float total_Venta = 0;
             for (int i = 0; i < rowCount; i++) {
                 int idProducto = (int) modelDetalles.getValueAt(i, 0);
                 float precioUnitario = ((Number) modelDetalles.getValueAt(i, 2)).floatValue();
@@ -469,10 +469,10 @@ public class VistaVenta extends javax.swing.JPanel {
                 detalle.setPrecioUnitario(precioUnitario);
                 detalles.add(detalle);
 
-                totalVenta += subtotal;
+                total_Venta += subtotal;
             }
 
-            ventaControlador.crearVenta(idCliente, fechaVenta, totalVenta, detalles);
+            ventaControlador.crearVenta(id_Cliente, fechaVenta, total_Venta, detalles);
 
             limpiar();
             cargarDatosTablaVenta();
@@ -581,65 +581,6 @@ public class VistaVenta extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnActualizaraccionBotonActualizar
 
-    private void btnAgregarDetalleaccionBotonAgregarDetalle(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDetalleaccionBotonAgregarDetalle
-        try {
-            // Obtener el índice seleccionado del comboProductos
-            int indiceSeleccionado = comboProducto.getSelectedIndex();
-            if (indiceSeleccionado < 0) {
-                JOptionPane.showMessageDialog(this, "Seleccione un producto.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Obtener la lista de productos
-            List<Producto> productos = productoControlador.obtenerTodosProductos();
-            Producto productoSeleccionado = productos.get(indiceSeleccionado);
-
-            // Obtener el precio unitario del producto
-            double precioUnitario = productoSeleccionado.getPrecio_Costo();
-
-            // Obtener la cantidad ingresada
-            String cantidadStr = textCantidad.getText().trim();
-            if (cantidadStr.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ingrese una cantidad.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            int cantidad;
-            try {
-                cantidad = Integer.parseInt(cantidadStr);
-                if (cantidad <= 0) {
-                    JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor a 0.", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "La cantidad debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Calcular el subtotal
-            double subtotal = precioUnitario * cantidad;
-
-            // Agregar los datos a la tabla tablaDetalles
-            DefaultTableModel model = (DefaultTableModel) tablaDetalles.getModel();
-            Object[] row = {
-                productoSeleccionado.getId_producto(),
-                productoSeleccionado.getNombre_prod(),
-                precioUnitario,
-                cantidad,
-                subtotal
-            };
-            model.addRow(row);
-
-            // Limpiar los campos después de agregar
-            textCantidad.setText("");
-            textPrecio.setText("");
-            cargarProductos();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al agregar el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnAgregarDetalleaccionBotonAgregarDetalle
-
     private void tablaVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaVentaMouseClicked
         if (evt.getClickCount() == 2) {
             try {
@@ -729,6 +670,65 @@ public class VistaVenta extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_tablaVentaMouseClicked
+
+    private void accionBotonDetalleAgregar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonDetalleAgregar
+                try {
+            // Obtener el índice seleccionado del comboProductos
+            int indiceSeleccionado = comboProducto.getSelectedIndex();
+            if (indiceSeleccionado < 0) {
+                JOptionPane.showMessageDialog(this, "Seleccione un producto.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Obtener la lista de productos
+            List<Producto> productos = productoControlador.obtenerTodosProductos();
+            Producto productoSeleccionado = productos.get(indiceSeleccionado);
+
+            // Obtener el precio unitario del producto
+            double precioUnitario = productoSeleccionado.getPrecio_Costo();
+
+            // Obtener la cantidad ingresada
+            String cantidadStr = textCantidad.getText().trim();
+            if (cantidadStr.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese una cantidad.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int cantidad;
+            try {
+                cantidad = Integer.parseInt(cantidadStr);
+                if (cantidad <= 0) {
+                    JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor a 0.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "La cantidad debe ser un número entero válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Calcular el subtotal
+            double subtotal = precioUnitario * cantidad;
+
+            // Agregar los datos a la tabla tablaDetalles
+            DefaultTableModel model = (DefaultTableModel) tablaDetalles.getModel();
+            Object[] row = {
+                productoSeleccionado.getId_producto(),
+                productoSeleccionado.getNombre_prod(),
+                precioUnitario,
+                cantidad,
+                subtotal
+            };
+            model.addRow(row);
+
+            // Limpiar los campos después de agregar
+            textCantidad.setText("");
+            textPrecio.setText("");
+            cargarProductos();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al agregar el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_accionBotonDetalleAgregar
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

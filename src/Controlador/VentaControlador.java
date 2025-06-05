@@ -29,12 +29,12 @@ public class VentaControlador {
     }
 
     // Método para crear una nueva venta con sus detalles
-    public void crearVenta(int id_Cliente, Date Fe_Venta, float totalVenta, List<Detalles_Venta> detalles) {
+    public void crearVenta(int id_Cliente, Date Fe_Venta, float total_Venta, List<Detalles_Venta> detalles) {
         try {
             Venta venta = new Venta();
             venta.setId_Cliente(id_Cliente);
             venta.setFe_Venta(Fe_Venta);
-            venta.setTotalVenta(totalVenta);
+            venta.setTotal_Venta(total_Venta);
             int idVentas = DAOventa.crearVenta(venta);
 
             if (idVentas == -1) {
@@ -70,7 +70,7 @@ public class VentaControlador {
             venta.setId_Ventas(idVentas);
             venta.setId_Cliente(id_Cliente);
             venta.setFe_Venta(Fe_Venta);
-            venta.setTotalVenta(totalVenta);
+            venta.setTotal_Venta(totalVenta);
             DAOventa.actualizarVenta(venta);
             JOptionPane.showMessageDialog(null, "Venta actualizada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
@@ -110,7 +110,7 @@ public class VentaControlador {
                 System.out.println("ID: " + v.getId_Ventas()
                         + ", Cliente: " + v.getId_Cliente()
                         + ", Fecha: " + v.getFe_Venta()
-                        + ", Total: " + v.getTotalVenta());
+                        + ", Total: " + v.getTotal_Venta());
             }
         }
 
