@@ -19,19 +19,19 @@ public class Producto {
     private double Existencia_Prod;
     private double Precio_Costo;
     private double precio_Venta;
-    private Date fecha_caducidad;
+    private Date Fe_caducidad;
 
     public Producto() {
     }
 
-    public Producto(int id_producto, String nombre_prod, String Tipo_Prod, double Existencia_Prod, double Precio_Costo, double precio_Venta, Date fecha_caducidad) {
+    public Producto(int id_producto, String nombre_prod, String Tipo_Prod, double Existencia_Prod, double Precio_Costo, double precio_Venta, Date Fe_caducidad) {
         this.id_producto = id_producto;
         this.nombre_prod = nombre_prod;
         this.Tipo_Prod = Tipo_Prod;
         this.Existencia_Prod = Existencia_Prod;
         this.Precio_Costo = Precio_Costo;
         this.precio_Venta = precio_Venta;
-        this.fecha_caducidad = fecha_caducidad;
+        this.Fe_caducidad = Fe_caducidad;
     }
 
     public int getId_producto() {
@@ -82,12 +82,12 @@ public class Producto {
         this.precio_Venta = precio_Venta;
     }
 
-    public Date getFecha_caducidad() {
-        return fecha_caducidad;
+    public Date getFe_caducidad() {
+        return Fe_caducidad;
     }
 
-    public void setFecha_caducidad(Date fecha_caducidad) {
-        this.fecha_caducidad = fecha_caducidad;
+    public void setFe_caducidad(Date Fe_caducidad) {
+        this.Fe_caducidad = Fe_caducidad;
     }
 
 }

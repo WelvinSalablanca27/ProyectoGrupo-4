@@ -36,7 +36,7 @@ public class DAOProducto {
             stmt.setDouble(3, producto.getExistencia_Prod());
             stmt.setDouble(4, producto.getPrecio_Costo());
             stmt.setDouble(5, producto.getPrecio_Venta());
-            stmt.setDate(6, new java.sql.Date(producto.getFecha_caducidad().getTime()));
+            stmt.setDate(6, new java.sql.Date(producto.getFe_caducidad().getTime()));
 
             stmt.executeUpdate();
         }
@@ -76,7 +76,7 @@ public class DAOProducto {
                     producto.setTipo_Prod(rs.getString("Tipo_Prod"));
                     producto.setPrecio_Costo(rs.getFloat("Precio_Costo"));
                     producto.setPrecio_Venta(rs.getFloat("Precio_Venta"));
-                    producto.setFecha_caducidad(rs.getDate("Fecha"));
+                    producto.setFe_caducidad(rs.getDate("Fe_caducidad"));
                 }
             }
         }
@@ -95,7 +95,7 @@ public class DAOProducto {
             stmt.setDouble(3, producto.getExistencia_Prod());
             stmt.setDouble(4, producto.getPrecio_Costo());
             stmt.setDouble(5, producto.getPrecio_Venta());
-            stmt.setDate(6, new java.sql.Date(producto.getFecha_caducidad().getTime()));
+            stmt.setDate(6, new java.sql.Date(producto.getFe_caducidad().getTime()));
             stmt.setInt(7, producto.getId_producto());
 
             stmt.executeUpdate();
@@ -124,7 +124,7 @@ public class DAOProducto {
             producto.setExistencia_Prod(22);
             producto.setPrecio_Costo(100);
             producto.setPrecio_Venta(9000);
-            producto.setFecha_caducidad(new java.util.Date());
+            producto.setFe_caducidad(new java.util.Date());
             dao.actualizarProducto(producto);
             System.out.println("Producto actualizada.");
 
@@ -141,7 +141,7 @@ public class DAOProducto {
                         + ", Existencia_Prod: " + p.getExistencia_Prod()
                         + ", Precio_Costo: " + p.getPrecio_Costo()
                         + ", Precio_Venta: " + p.getPrecio_Venta()
-                        + ", Fecha_Caducidad: " + p.getFecha_caducidad());
+                        + ", Fecha_Caducidad: " + p.getFe_caducidad());
             }
         } catch (SQLException e) {
             System.err.println("Error: " + e.getMessage());

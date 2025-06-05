@@ -38,7 +38,7 @@ public class ProductoControlador {
 // Método para crear un nuevo producto
 
     public void crearProducto(String Nombre_prod, String Tipo_Prod, double Existencia_Prod,
-            double Precio_Costo, double precio_venta, Date fecha_caducidad) {
+            double Precio_Costo, double precio_venta, Date Fe_caducidad) {
         try {
             Producto producto = new Producto();
             producto.setNombre_prod(Nombre_prod);
@@ -46,7 +46,7 @@ public class ProductoControlador {
             producto.setExistencia_Prod(Existencia_Prod);
             producto.setPrecio_Costo(Precio_Costo);
             producto.setPrecio_Venta(precio_venta);
-            producto.setFecha_caducidad(fecha_caducidad);
+            producto.setFe_caducidad(Fe_caducidad);
             DAOproducto.crearProducto(producto);
             JOptionPane.showMessageDialog(null, "Producto creado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
@@ -84,7 +84,7 @@ public class ProductoControlador {
             producto.setExistencia_Prod(Existencia_Prod);
             producto.setPrecio_Costo(Precio_Costo);
             producto.setPrecio_Venta(precio_venta);
-            producto.setFecha_caducidad(fecha_caducidad);
+            producto.setFe_caducidad(fecha_caducidad);
             DAOproducto.actualizarProducto(producto);
             JOptionPane.showMessageDialog(null, "Producto actualizado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
@@ -128,7 +128,7 @@ public class ProductoControlador {
                         + ", Existencia_Prod: " + p.getExistencia_Prod()
                         + ", Precio_Costo: " + p.getPrecio_Costo()
                         + ", Precio_Venta: " + p.getPrecio_Venta()
-                        + ", Fecha_Caducidad: " + p.getFecha_caducidad());
+                        + ", Fecha_Caducidad: " + p.getFe_caducidad());
             }
         }
 

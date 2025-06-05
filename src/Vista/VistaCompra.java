@@ -71,9 +71,8 @@ public class VistaCompra extends javax.swing.JPanel {
         FechaCaducidad.setDate(new Date());
 
         // Limpiar la tabla de detalles
-        tablaDetalles.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID Producto", "Producto", "Precio", "FechaIngreso", "FechaCaducidad",
-            "Cantidad", "Subtotal"}
-        ));
+        tablaDetalles.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID Producto ", "Producto", "Precio ",
+            "FechaIngreso", "FechaCaducidad", "Cantidad", "Subtotal"}));
 
         cargarDatosTablaCompras();
         cargarProveedor();
@@ -312,11 +311,11 @@ public class VistaCompra extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID Producto", "Producto", "Fecha Ingreso", "Precio", "Fecha Caducidad", "Catidad", "Subtotal"
+                "ID Producto", "Producto", "Precio", "Fecha Ingreso", "Fecha Caducidad", "Catidad", "Subtotal"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Float.class, java.lang.Object.class, java.lang.Object.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Object.class, java.lang.Object.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -845,7 +844,7 @@ public class VistaCompra extends javax.swing.JPanel {
                 productoSeleccionado.getNombre_prod(),
                 productoSeleccionado.getPrecio_Costo(),
                 productoSeleccionado.getPrecio_Venta(),
-                productoSeleccionado.getFecha_caducidad(),
+                productoSeleccionado.getFe_caducidad(),
                 cantidad,
                 subtotal
             };

@@ -21,12 +21,7 @@ import java.util.List;
 public class DAOCompra {
 
     public int crearCompra(Compra compra) throws SQLException {
-        String sql = """
-        INSERT INTO Compra (
-           id_Proveedor,
-           Fe_compra,
-           total_compra
-          ) VALUES (?, ?, ?)""";
+        String sql = "INSERT INTO Compra (id_Proveedor, Fe_compra, totalCompra) VALUES (?, ?, ?)";
         int generatedId = -1;
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {

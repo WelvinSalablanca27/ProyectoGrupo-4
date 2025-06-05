@@ -53,7 +53,7 @@ public class VistaProducto extends javax.swing.JPanel {
                     pro.getExistencia_Prod(),
                     pro.getPrecio_Costo(),
                     pro.getPrecio_Venta(),
-                    pro.getFecha_caducidad()
+                    pro.getFe_caducidad()
                 };
                 model.addRow(row);
             }
@@ -436,9 +436,9 @@ public class VistaProducto extends javax.swing.JPanel {
             for (Producto pro : productos) {
                 // Convertir fecha_caducidad a String para comparación
                 String fechaCaducidadStr = "";
-                if (pro.getFecha_caducidad() != null) {
+                if (pro.getFe_caducidad() != null) {
                     SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
-                    fechaCaducidadStr = formatoFecha.format(pro.getFecha_caducidad());
+                    fechaCaducidadStr = formatoFecha.format(pro.getFe_caducidad());
                 }
 
                 // Verificar si el producto coincide con el filtro de búsqueda

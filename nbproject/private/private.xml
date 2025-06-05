@@ -4,10 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Vista/VistaVenta.java</file>
-            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Controlador/VentaControlador.java</file>
-            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/DAO/DAOVenta.java</file>
-            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/DAO/DAODetalleCompra.java</file>
-            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Controlador/DetalleCompraControlador.java</file>
+            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Controlador/ProductoControlador.java</file>
+            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/DAO/DAOProducto.java</file>
+            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Entidades/Producto.java</file>
+            <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Vista/VistaProducto.java</file>
             <file>file:/C:/Users/welvi/Desktop/ProyectoGrupo-4/src/Vista/VistaCompra.java</file>
         </group>
     </open-files>

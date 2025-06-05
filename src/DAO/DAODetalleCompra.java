@@ -28,7 +28,7 @@ public class DAODetalleCompra {
              Fe_caducidad,
              precio, 
              cantidad
-        ) VALUES (?, ?, ?, ?)""";
+        ) VALUES (?, ?, ?, ?, ?, ?)""";
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
             stmt.setInt(1, detalle.getId_compra());
