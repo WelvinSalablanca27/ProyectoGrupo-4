@@ -20,14 +20,14 @@ public class DAODetalles_Venta {
                         INSERT INTO Detalles_Venta (
                             id_venta, 
                             id_producto, 
-                             PrecioUnitario,
+                            Precio_venta,
                             cantidad_producto
                         ) VALUES (?, ?, ?, ?)""";
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
             stmt.setInt(1, detalle.getId_Venta());
             stmt.setInt(2, detalle.getId_Producto());
-            stmt.setFloat(3, detalle.getPrecioUnitario());
+            stmt.setDouble(3, detalle.getPrecio_venta());
             stmt.setInt(4, detalle.getCantidad_Producto());
             stmt.executeUpdate();
 
@@ -44,7 +44,7 @@ public class DAODetalles_Venta {
                 detalle.setId_DetalleVenta(rs.getInt("id_DetalleVenta"));
                 detalle.setId_Venta(rs.getInt("id_venta"));
                 detalle.setId_Producto(rs.getInt("id_producto"));
-                detalle.setPrecioUnitario(rs.getFloat("precioUnitario"));
+                detalle.setPrecio_venta(rs.getDouble("Precio_venta"));
                 detalle.setCantidad_Producto(rs.getInt("cantidad_producto"));
                 detalles.add(detalle);
             }
@@ -53,12 +53,12 @@ public class DAODetalles_Venta {
     }
 
     public void actualizarDetalleVenta(Detalles_Venta detalle) throws SQLException {
-        String sql = "UPDATE Detalles_Venta SET id_venta = ?, id_producto = ?,  precioUnitario = ?, cantidad_producto = ? WHERE id_DetalleVenta = ?";
+        String sql = "UPDATE Detalles_Venta SET id_venta = ?, id_producto = ?,  Precio_venta = ?, cantidad_producto = ? WHERE id_DetalleVenta = ?";
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
             stmt.setInt(1, detalle.getId_Venta());
             stmt.setInt(2, detalle.getId_Producto());
-            stmt.setFloat(3, detalle.getPrecioUnitario());
+            stmt.setDouble(3, detalle.getPrecio_venta());
             stmt.setInt(5, detalle.getId_DetalleVenta());
             stmt.executeUpdate();
         }
@@ -83,7 +83,7 @@ public class DAODetalles_Venta {
             detalle.setId_Venta(1);
             detalle.setId_Producto(3);
             detalle.setCantidad_Producto(2);
-            detalle.setPrecioUnitario(200.0f);
+            detalle.setPrecio_venta(200.0f);
             dao.actualizarDetalleVenta(detalle);
             System.out.println("Detalle de venta actualizado.");
 
@@ -98,7 +98,7 @@ public class DAODetalles_Venta {
                 System.out.println("ID: " + det.getId_DetalleVenta()
                         + ", Venta ID: " + det.getId_Venta()
                         + ", Producto ID: " + det.getId_Producto()
-                        + ", Precio: " + det.getPrecioUnitario()
+                        + ", Precio: " + det.getPrecio_venta()
                         + ", Cantidad: " + det.getCantidad_Producto());
             }
         } catch (SQLException e) {

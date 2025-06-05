@@ -13,17 +13,17 @@ public class Detalles_Venta {
     private int id_DetalleVenta;
     private int id_Venta;
     private int id_Producto;
-    private double  precio_venta;
+    private double Precio_venta;
     private int cantidad_Producto;
 
     public Detalles_Venta() {
     }
 
-    public Detalles_Venta(int id_DetalleVenta, int id_Venta, int id_Producto, double precio_venta, int cantidad_Producto) {
+    public Detalles_Venta(int id_DetalleVenta, int id_Venta, int id_Producto, double Precio_venta, int cantidad_Producto) {
         this.id_DetalleVenta = id_DetalleVenta;
         this.id_Venta = id_Venta;
         this.id_Producto = id_Producto;
-        this.precio_venta = precio_venta;
+        this.Precio_venta = Precio_venta;
         this.cantidad_Producto = cantidad_Producto;
     }
 
@@ -52,11 +52,11 @@ public class Detalles_Venta {
     }
 
     public double getPrecio_venta() {
-        return precio_venta;
+        return Precio_venta;
     }
 
-    public void setPrecio_venta(double precio_venta) {
-        this.precio_venta = precio_venta;
+    public void setPrecio_venta(double Precio_venta) {
+        this.Precio_venta = Precio_venta;
     }
 
     public int getCantidad_Producto() {
@@ -66,5 +66,6 @@ public class Detalles_Venta {
     public void setCantidad_Producto(int cantidad_Producto) {
         this.cantidad_Producto = cantidad_Producto;
     }
+
     
 }
