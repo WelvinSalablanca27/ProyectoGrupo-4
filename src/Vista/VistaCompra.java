@@ -47,10 +47,10 @@ public class VistaCompra extends javax.swing.JPanel {
         selectorfechaCompra.setDate(new Date());
         ((JTextField) selectorfechaCompra.getDateEditor().getUiComponent()).setEditable(false);
 
-        FechaVenta.setDate(new Date());
+         selectorFechaVenta.setDate(new Date());
         ((JTextField) selectorfechaCompra.getDateEditor().getUiComponent()).setEditable(false);
 
-        FechaCaducidad.setDate(new Date());
+        selectorFechaCaducidad.setDate(new Date());
         ((JTextField) selectorfechaCompra.getDateEditor().getUiComponent()).setEditable(false);
 
         // Limpiar las filas vacías de tablaDetalles
@@ -67,8 +67,8 @@ public class VistaCompra extends javax.swing.JPanel {
         textBuscar.setText("");
         idProveedorSeleccionado = null;
         selectorfechaCompra.setDate(new Date());
-        FechaVenta.setDate(new Date());
-        FechaCaducidad.setDate(new Date());
+        selectorFechaVenta.setDate(new Date());
+        selectorFechaCaducidad.setDate(new Date());
 
         // Limpiar la tabla de detalles
         tablaDetalles.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID Producto ", "Producto", "Precio ",
@@ -225,10 +225,10 @@ public class VistaCompra extends javax.swing.JPanel {
         btnLimpiar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
-        selectorfechaCompra = new com.toedter.calendar.JDateChooser();
-        FechaVenta = new com.toedter.calendar.JDateChooser();
-        FechaCaducidad = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
+        selectorfechaCompra = new com.toedter.calendar.JDateChooser();
+        selectorFechaVenta = new com.toedter.calendar.JDateChooser();
+        selectorFechaCaducidad = new com.toedter.calendar.JDateChooser();
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -432,13 +432,13 @@ public class VistaCompra extends javax.swing.JPanel {
             }
         });
         jPanel2.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, -1, 30));
-        jPanel2.add(selectorfechaCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 32, 140, 30));
-        jPanel2.add(FechaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 32, 120, 30));
-        jPanel2.add(FechaCaducidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 32, 140, 30));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/291474364_116090381133197_1246855093686710006_n (1)-Photoroom (1).jpg"))); // NOI18N
         jLabel6.setText("jLabel6");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-270, -80, -1, 640));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-250, 200, 1070, 320));
+        jPanel2.add(selectorfechaCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 150, -1));
+        jPanel2.add(selectorFechaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 32, 110, 30));
+        jPanel2.add(selectorFechaCaducidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 32, 120, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -863,8 +863,6 @@ public class VistaCompra extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboProveedor;
-    private com.toedter.calendar.JDateChooser FechaCaducidad;
-    private com.toedter.calendar.JDateChooser FechaVenta;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
@@ -886,6 +884,8 @@ public class VistaCompra extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private com.toedter.calendar.JDateChooser selectorFechaCaducidad;
+    private com.toedter.calendar.JDateChooser selectorFechaVenta;
     private com.toedter.calendar.JDateChooser selectorfechaCompra;
     private javax.swing.JTable tablaCompras;
     private javax.swing.JTable tablaDetalles;
