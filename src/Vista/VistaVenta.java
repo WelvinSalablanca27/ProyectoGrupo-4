@@ -232,7 +232,7 @@ public class VistaVenta extends javax.swing.JPanel {
                 textBuscarKeyTyped(evt);
             }
         });
-        jPanel1.add(textBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 210, 330, 30));
+        jPanel1.add(textBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 330, 30));
 
         btnLimpiar.setText("Buscar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +348,7 @@ public class VistaVenta extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Buscar");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 216, 56, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 56, -1));
 
         jButton2.setText("Quitar Detalle");
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(644, 214, -1, -1));
