@@ -21,13 +21,18 @@ import java.util.List;
 public class DAOCompra {
 
     public int crearCompra(Compra compra) throws SQLException {
-        String sql = "INSERT INTO Compra (id_Proveedor, Fe_compra, totalCompra) VALUES (?, ?, ?)";
+         String sql = """
+         INSERT INTO Compra (
+            id_Proveedor, 
+            Fe_compra, 
+            total_compra
+        ) VALUES (?, ?, ?)""";
         int generatedId = -1;
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, compra.getId_Proveedor());
             stmt.setDate(2, new java.sql.Date(compra.getFe_compra().getTime()));
-            stmt.setFloat(3, compra.getTotalCompra());
+            stmt.setFloat(3, compra.getTotal_Compra());
             stmt.executeUpdate();
 
             // Obtener el ID generado
@@ -50,7 +55,7 @@ public class DAOCompra {
                 compra.setId_compra(rs.getInt("id_compra"));
                 compra.setId_Proveedor(rs.getInt("id_Proveedor"));
                 compra.setFe_compra(rs.getDate("Fe_compra"));
-                compra.setTotalCompra(rs.getFloat("total_compra"));
+                compra.setTotal_Compra(rs.getFloat("total_compra"));
                 compras.add(compra);
             }
         }
@@ -63,7 +68,7 @@ public class DAOCompra {
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
             stmt.setInt(1, compra.getId_Proveedor());
             stmt.setDate(2, new java.sql.Date(compra.getFe_compra().getTime()));
-            stmt.setFloat(3, compra.getTotalCompra());
+            stmt.setFloat(3, compra.getTotal_Compra());
             stmt.setInt(4, compra.getId_compra()); // <-- Agregado
             stmt.executeUpdate();
         }
@@ -89,7 +94,7 @@ public class DAOCompra {
             compra.setId_compra(1); // ID existente
             compra.setId_Proveedor(1);
             compra.setFe_compra(new java.util.Date());
-            compra.setTotalCompra(1500.50f);
+            compra.setTotal_Compra(1500.50f);
             dao.actualizarCompra(compra);
             System.out.println("Compra actualizada.");
 
@@ -104,7 +109,7 @@ public class DAOCompra {
                 System.out.println("ID: " + comp.getId_compra()
                         + ", Proveedor ID: " + comp.getId_Proveedor()
                         + ", Fe_compra: " + comp.getFe_compra()
-                        + ", Total: " + comp.getTotalCompra());
+                        + ", Total: " + comp.getTotal_Compra());
 
             }
         } catch (SQLException e) {

@@ -18,17 +18,17 @@ public class Compra {
     private int id_compra;
     private int id_Proveedor;
     private Date Fe_compra;
-    private float totalCompra;
+    private float total_Compra;
     private List<DetalleCompra> detalles;
 
     public Compra() {
     }
 
-    public Compra(int id_compra, int id_Proveedor, Date Fe_compra, float totalCompra, List<DetalleCompra> detalles) {
+    public Compra(int id_compra, int id_Proveedor, Date Fe_compra, float total_Compra, List<DetalleCompra> detalles) {
         this.id_compra = id_compra;
         this.id_Proveedor = id_Proveedor;
         this.Fe_compra = Fe_compra;
-        this.totalCompra = totalCompra;
+        this.total_Compra = total_Compra;
         this.detalles = detalles;
     }
 
@@ -56,12 +56,12 @@ public class Compra {
         this.Fe_compra = Fe_compra;
     }
 
-    public float getTotalCompra() {
-        return totalCompra;
+    public float getTotal_Compra() {
+        return total_Compra;
     }
 
-    public void setTotalCompra(float totalCompra) {
-        this.totalCompra = totalCompra;
+    public void setTotal_Compra(float total_Compra) {
+        this.total_Compra = total_Compra;
     }
 
     public List<DetalleCompra> getDetalles() {

@@ -4,13 +4,13 @@
  */
 package Vista;
 
-import Entidades.Proveedor;
-import Controlador.ProveedorControlador;
 import Controlador.CompraControlador;
 import Entidades.Compra;
 import Controlador.DetalleCompraControlador;
-import Controlador.ProductoControlador;
 import Entidades.DetalleCompra;
+import Controlador.ProveedorControlador;
+import Entidades.Proveedor;
+import Controlador.ProductoControlador;
 import Entidades.Producto;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,16 +23,19 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 
 /**
- * @author Welvi
+ *
+ * @author welvi
  */
 public class VistaCompra extends javax.swing.JPanel {
 
     private final CompraControlador compraControlador;
     private final DetalleCompraControlador detalleCompraControlador;
-    private final ProductoControlador productoControlador;
     private final ProveedorControlador proveedorControlador;
-    private Integer idProveedorSeleccionado = null;
+    private final ProductoControlador productoControlador;
+
+    private Integer idProveedordoSeleccionado = null;
     private Integer idProductoSeleccionado = null;
+
     private Timer timer; // Variable de instancia para el Timer
     private boolean horabd = false;
 
@@ -40,17 +43,11 @@ public class VistaCompra extends javax.swing.JPanel {
         initComponents();
         this.compraControlador = new CompraControlador();
         this.detalleCompraControlador = new DetalleCompraControlador();
-        this.productoControlador = new ProductoControlador();
         this.proveedorControlador = new ProveedorControlador();
+        this.productoControlador = new ProductoControlador();
         eventoComboProductos();
 
         selectorfechaCompra.setDate(new Date());
-        ((JTextField) selectorfechaCompra.getDateEditor().getUiComponent()).setEditable(false);
-
-         selectorFechaVenta.setDate(new Date());
-        ((JTextField) selectorfechaCompra.getDateEditor().getUiComponent()).setEditable(false);
-
-        selectorFechaCaducidad.setDate(new Date());
         ((JTextField) selectorfechaCompra.getDateEditor().getUiComponent()).setEditable(false);
 
         // Limpiar las filas vacías de tablaDetalles
@@ -65,14 +62,11 @@ public class VistaCompra extends javax.swing.JPanel {
 
     private void limpiar() {
         textBuscar.setText("");
-        idProveedorSeleccionado = null;
+        idProveedordoSeleccionado = null;
         selectorfechaCompra.setDate(new Date());
-        selectorFechaVenta.setDate(new Date());
-        selectorFechaCaducidad.setDate(new Date());
 
         // Limpiar la tabla de detalles
-        tablaDetalles.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID Producto ", "Producto", "Precio ",
-            "FechaIngreso", "FechaCaducidad", "Cantidad", "Subtotal"}));
+        tablaDetalles.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID Producto", "Producto", "Precio ", "Cantidad", "Subtotal"}));
 
         cargarDatosTablaCompras();
         cargarProveedor();
@@ -116,13 +110,13 @@ public class VistaCompra extends javax.swing.JPanel {
             for (Compra c : compras) {
 
                 Proveedor proveedor = proveedorControlador.obtenerProveedorPorId(c.getId_Proveedor());
-                String NombreProveedor = proveedor.getNombre_Proveedor() + " " + proveedor.getTipo_distribuidor();
+                String nombreProveedor = proveedor.getNombre_Proveedor()+ " " + proveedor.getTipo_distribuidor();
 
                 Object[] row = {
                     c.getId_compra(),
                     c.getFe_compra(),
-                    NombreProveedor,
-                    c.getTotalCompra()
+                    nombreProveedor,
+                    c.getTotal_Compra()
                 };
                 model.addRow(row);
             }
@@ -135,11 +129,11 @@ public class VistaCompra extends javax.swing.JPanel {
             List<Proveedor> proveedor = proveedorControlador.obtenerTodosProveedores();
 
             // Limpiar el combo box por si tiene datos
-            ComboProveedor.removeAllItems();
+            comboProveedor.removeAllItems();
 
             // Agregar cada categoría al combo box
-            for (Proveedor p : proveedor) {
-                ComboProveedor.addItem(p.getNombre_Proveedor() + " " + p.getTelefono()); // Mostrar el nombre
+            for (Proveedor e : proveedor) {
+                comboProveedor.addItem(e.getNombre_Proveedor() + " " + e.getTipo_distribuidor()); // Mostrar el nombre
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
@@ -190,6 +184,7 @@ public class VistaCompra extends javax.swing.JPanel {
         });
     }
 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -200,125 +195,67 @@ public class VistaCompra extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        ComboProveedor = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        textCantidad = new javax.swing.JTextField();
-        hora = new javax.swing.JLabel();
-        comboProductos = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        textPrecio = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaDetalles = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
-        textBuscar = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaCompras = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        comboProveedor = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        textPrecio = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
-        btnGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        btnAgregar = new javax.swing.JButton();
+        hora = new javax.swing.JLabel();
+        comboProductos = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        textCantidad = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaCompras = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
         selectorfechaCompra = new com.toedter.calendar.JDateChooser();
-        selectorFechaVenta = new com.toedter.calendar.JDateChooser();
-        selectorFechaCaducidad = new com.toedter.calendar.JDateChooser();
+        textBuscar = new javax.swing.JTextField();
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText(" Proveedor");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-
-        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Fecha ");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
-
-        ComboProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
-        jPanel2.add(ComboProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 90, 31));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Cantidad");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
-        jPanel2.add(textCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 95, 30));
-
-        hora.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        hora.setText("00:00:00");
-        jPanel2.add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
-
-        comboProductos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(comboProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 30, 99, 31));
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Producto");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Precio");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
-        jPanel2.add(textPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(399, 30, 79, 31));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Fecha Ingreso");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("Fecha caducidad");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, -1, -1));
+        jPanel1.setBackground(new java.awt.Color(51, 255, 204));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaDetalles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID Producto", "Producto", "Precio", "Fecha Ingreso", "Fecha Caducidad", "Catidad", "Subtotal"
+                "ID  Producto", "Producto", "Precio ", "Cantidad", "Subtotal"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Object.class, java.lang.Object.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -336,18 +273,90 @@ public class VistaCompra extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaDetalles);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 750, 110));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 58, 659, 89));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Buscar");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Proveedor");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 6, -1, -1));
 
-        textBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textBuscarKeyTyped(evt);
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Fecha");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 6, -1, -1));
+
+        comboProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        jPanel1.add(comboProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 29, 107, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Precio");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, 20));
+        jPanel1.add(textPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 70, -1));
+
+        btnGuardar.setBackground(new java.awt.Color(153, 255, 255));
+        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardaraccionBotonGuardar(evt);
             }
         });
-        jPanel2.add(textBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 315, 31));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 342, 119, -1));
+
+        btnEliminar.setBackground(new java.awt.Color(153, 255, 255));
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminaraccionBotonEliminar(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 342, 119, -1));
+
+        btnActualizar.setBackground(new java.awt.Color(153, 255, 255));
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizaraccionBotonActualizar(evt);
+            }
+        });
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 119, -1));
+
+        btnLimpiar.setBackground(new java.awt.Color(153, 255, 255));
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiaraccionBotonLimpiar(evt);
+            }
+        });
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 342, 119, -1));
+
+        hora.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        hora.setText("00:00:00");
+        jPanel1.add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 6, -1, -1));
+
+        comboProductos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(comboProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 29, 81, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("Producto");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 6, -1, -1));
+        jPanel1.add(textCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 29, 90, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setText("Cantidad");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 6, -1, -1));
+
+        jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1accionBotonAgregar(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 29, -1, -1));
+
+        jLabel4.setText("Buscar");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 178, -1, -1));
 
         tablaCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -357,7 +366,7 @@ public class VistaCompra extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "ID Compra", "Fecha Compra", "Proveedor", "Total"
+                "ID Compra", "Fecha/Hora", "Proveedor", "Total"
             }
         ) {
             Class[] types = new Class [] {
@@ -377,91 +386,33 @@ public class VistaCompra extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tablaCompras);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 740, 120));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 659, 121));
 
-        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminaraccionBotonEliminar(evt);
-            }
-        });
-        jPanel2.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, 125, 32));
-
-        btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaraccionBotonActualizar(evt);
-            }
-        });
-        jPanel2.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 125, 32));
-
-        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardaraccionBotonGuardar(evt);
-            }
-        });
-        jPanel2.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 125, 30));
-
-        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiaraccionBotonLimpiar(evt);
-            }
-        });
-        jPanel2.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 125, 31));
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Quitar detalle");
+        jButton2.setText("Quitar Detalle");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2accionBotonQuitardetalle(evt);
+                jButton2accionBotonQuitarDetalle(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 130, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, -1, -1));
+        jPanel1.add(selectorfechaCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 130, -1));
 
-        btnAgregar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAgregar.setText("Agregar");
-        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarAccionBotonAgregar(evt);
+        textBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textBuscarKeyTyped(evt);
             }
         });
-        jPanel2.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, -1, 30));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/291474364_116090381133197_1246855093686710006_n (1)-Photoroom (1).jpg"))); // NOI18N
-        jLabel6.setText("jLabel6");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-250, 200, 1070, 320));
-        jPanel2.add(selectorfechaCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 150, -1));
-        jPanel2.add(selectorFechaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 32, 110, 30));
-        jPanel2.add(selectorFechaCaducidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 32, 120, 30));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPanel1.add(textBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 172, 240, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -481,13 +432,13 @@ public class VistaCompra extends javax.swing.JPanel {
 
                 // Obtener el idVenta de la fila seleccionada
                 DefaultTableModel modelVentas = (DefaultTableModel) tablaCompras.getModel();
-                int id_Compra = (int) modelVentas.getValueAt(filaSeleccionada, 0);
+                int idCompra = (int) modelVentas.getValueAt(filaSeleccionada, 0);
 
                 // Obtener la venta seleccionada para acceder a sus datos
                 List<Compra> compras = compraControlador.obtenerTodasCompras();
                 Compra compraSeleccionada = null;
                 for (Compra c : compras) {
-                    if (c.getId_compra() == id_Compra) {
+                    if (c.getId_compra()== idCompra) {
                         compraSeleccionada = c;
                         break;
                     }
@@ -497,18 +448,18 @@ public class VistaCompra extends javax.swing.JPanel {
                     return;
                 }
 
-                // Cargar empleado en ComboProveedor
-                List<Proveedor> proveedor = proveedorControlador.obtenerTodosProveedores();
-                int indiceid_Proveedor = -1;
+                // Cargar empleado en comboEmpleados
+             List<Proveedor> proveedor = proveedorControlador.obtenerTodosProveedores();
+                int indiceProveedor = -1;
                 for (int i = 0; i < proveedor.size(); i++) {
-                    if (proveedor.get(i).getId_Proveedor() == compraSeleccionada.getId_Proveedor()) {
-                        indiceid_Proveedor = i;
+                    if (proveedor.get(i).getId_Proveedor()== compraSeleccionada.getId_Proveedor()) {
+                        indiceProveedor = i;
                         break;
                     }
                 }
-                if (indiceid_Proveedor != -1) {
-                    idProveedorSeleccionado = compraSeleccionada.getId_Proveedor();
-                    ComboProveedor.setSelectedIndex(indiceid_Proveedor);
+                if (indiceProveedor != -1) {
+                    idProveedordoSeleccionado = compraSeleccionada.getId_Proveedor();
+                    comboProveedor.setSelectedIndex(indiceProveedor);
                 } else {
                     JOptionPane.showMessageDialog(this, "Empleado no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -535,18 +486,16 @@ public class VistaCompra extends javax.swing.JPanel {
                 List<DetalleCompra> detalles = detalleCompraControlador.obtenerTodosDetallesCompra();
                 if (detalles != null) {
                     for (DetalleCompra detalle : detalles) {
-                        if (detalle.getId_compra() == id_Compra) {
+                        if (detalle.getId_compra()== idCompra) {
                             Producto producto = productoControlador.obtenerProductoPorId(detalle.getId_Producto());
-                            String nombreProducto = (producto != null) ? producto.getNombre_prod() : "Desconocido";
+                            String nombreProducto = (producto != null) ? producto.getNombre_prod(): "Desconocido";
 
                             Object[] row = {
                                 detalle.getId_Producto(),
                                 nombreProducto,
                                 detalle.getPrecio(),
-                                detalle.getFe_Ingresado(), // columna 3
-                                detalle.getFe_caducidad(), // columna 4
-                                detalle.getCantidad(), // columna 5
-                                detalle.getPrecio() * detalle.getCantidad() // Subtotal
+                                detalle.getCantidad(),
+                                detalle.getPrecio()* detalle.getCantidad() // Subtotal
                             };
                             modelDetalles.addRow(row);
                         }
@@ -559,33 +508,65 @@ public class VistaCompra extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tablaDetallesMouseClicked
 
-    private void textBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyTyped
-        String textoBusqueda = textBuscar.getText().trim().toLowerCase();
-        List<Compra> compras = compraControlador.obtenerTodasCompras();
-
-        DefaultTableModel modelo = (DefaultTableModel) tablaDetalles.getModel();
-        modelo.setRowCount(0);
-
-        if (compras != null) {
-            for (Compra comp : compras) {
-                String idProveedorStr = String.valueOf(comp.getId_Proveedor());
-                String totalCompraStr = String.valueOf(comp.getTotalCompra());
-
-                if (textoBusqueda.isEmpty()
-                        || idProveedorStr.contains(textoBusqueda)
-                        || totalCompraStr.contains(textoBusqueda)) {
-
-                    Object[] fila = {
-                        comp.getId_compra(),
-                        comp.getId_Proveedor(),
-                        comp.getFe_compra(),
-                        comp.getTotalCompra()
-                    };
-                    modelo.addRow(fila);
-                }
+    private void btnGuardaraccionBotonGuardar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaraccionBotonGuardar
+        try {
+            // Obtener el índice seleccionado de empleados
+            int indiceProveedor = comboProveedor.getSelectedIndex();
+            if (indiceProveedor < 0) {
+                JOptionPane.showMessageDialog(this, "Seleccione un empleado.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
+
+            // Obtener la lista de  empleados
+            List<Proveedor> proveedores = proveedorControlador.obtenerTodosProveedores();
+            int idProveedor = proveedores.get(indiceProveedor).getId_Proveedor();
+
+            // Obtener la fecha seleccionada
+            Date fechaVenta = selectorfechaCompra.getDate();
+            if (fechaVenta == null) {
+                JOptionPane.showMessageDialog(this, "Seleccione una fecha.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Obtener los detalles de la tabla tablaDetalles
+            DefaultTableModel modelDetalles = (DefaultTableModel) tablaDetalles.getModel();
+            int rowCount = modelDetalles.getRowCount();
+            if (rowCount == 0) {
+                JOptionPane.showMessageDialog(this, "Agregue al menos un producto a la compra.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Crear lista de detalles y calcular total
+            List<DetalleCompra> detalles = new ArrayList<>();
+            float totalVenta = 0;
+            for (int i = 0; i < rowCount; i++) {
+                int idProducto = (int) modelDetalles.getValueAt(i, 0); // ID Producto como Integer
+                float precio = ((Number) modelDetalles.getValueAt(i, 2)).floatValue(); // Precio Unitario como Float
+                int cantidad = (int) modelDetalles.getValueAt(i, 3); // Cantidad como Integer
+                float subtotal = ((Number) modelDetalles.getValueAt(i, 4)).floatValue(); // Subtotal como Float
+
+                // Crear objeto DetalleCompra
+                DetalleCompra detalle = new DetalleCompra();
+                detalle.setId_Producto(idProducto);
+                detalle.setCantidad(cantidad);
+                detalle.setPrecio(precio);
+                detalles.add(detalle);
+
+                totalVenta += subtotal;
+            }
+
+            // Crear y guardar la compra
+            compraControlador.crearCompra(idProveedor, fechaVenta, totalVenta, detalles);
+
+            limpiar();
+
+            // Recargar la tabla de compras
+            cargarDatosTablaCompras();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar la compra: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_textBuscarKeyTyped
+    }//GEN-LAST:event_btnGuardaraccionBotonGuardar
 
     private void btnEliminaraccionBotonEliminar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaraccionBotonEliminar
         try {
@@ -602,9 +583,9 @@ public class VistaCompra extends javax.swing.JPanel {
 
             // Confirmar con el usuario antes de eliminar
             int confirmacion = JOptionPane.showConfirmDialog(this,
-                    "¿Está seguro de que desea eliminar la venta con ID " + idCompra + "?",
-                    "Confirmar Eliminación",
-                    JOptionPane.YES_NO_OPTION);
+                "¿Está seguro de que desea eliminar la venta con ID " + idCompra + "?",
+                "Confirmar Eliminación",
+                JOptionPane.YES_NO_OPTION);
             if (confirmacion == JOptionPane.YES_OPTION) {
                 // Eliminar la venta
                 compraControlador.eliminarCompra(idCompra);
@@ -623,112 +604,28 @@ public class VistaCompra extends javax.swing.JPanel {
             // Obtener el índice de la fila seleccionada en tablaVentas
             int filaSeleccionada = tablaCompras.getSelectedRow();
             if (filaSeleccionada == -1) {
-                JOptionPane.showMessageDialog(this, "Seleccione una venta para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Seleccione una compra para actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Obtener el idVenta de la fila seleccionada
-            DefaultTableModel modelCompra = (DefaultTableModel) tablaCompras.getModel();
-            int id_compra = (int) modelCompra.getValueAt(filaSeleccionada, 0);
+            DefaultTableModel modelVentas = (DefaultTableModel) tablaCompras.getModel();
+            int idCompra = (int) modelVentas.getValueAt(filaSeleccionada, 0);
 
-            // Obtener el índice seleccionado de clientes y empleados
-            int indiceid_Proveedor = ComboProveedor.getSelectedIndex();
-            if (indiceid_Proveedor < 0) {
-                JOptionPane.showMessageDialog(this, "Seleccione un cliente y un empleado.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Obtener la lista de proveedor
-            List<Proveedor> proveedor = proveedorControlador.obtenerTodosProveedores();
-            int id_Proveedor = proveedor.get(indiceid_Proveedor).getId_Proveedor();
-
-            // Obtener la fecha seleccionada
-            Date fechaCompra = selectorfechaCompra.getDate();
-            if (fechaCompra == null) {
-                JOptionPane.showMessageDialog(this, "Seleccione una fecha.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Obtener los detalles de la tabla tablaDetalles
-            DefaultTableModel modelDetalles = (DefaultTableModel) tablaDetalles.getModel();
-            int rowCount = modelDetalles.getRowCount();
-            if (rowCount == 0) {
-                JOptionPane.showMessageDialog(this, "Agregue al menos un producto a la venta.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Calcular el total de la venta
-            float totalCompra = 0;
-            for (int i = 0; i < rowCount; i++) {
-                totalCompra += ((Number) modelDetalles.getValueAt(i, 4)).floatValue(); // Suma los subtotales
-            }
-
-            // Actualizar la venta principal
-            compraControlador.actualizarCompra(id_compra, id_Proveedor, fechaCompra, totalCompra);
-
-            // Eliminar los detalles antiguos de la venta
-            List<DetalleCompra> detallesAntiguos = detalleCompraControlador.obtenerTodosDetallesCompra();
-            if (detallesAntiguos != null) {
-                for (DetalleCompra detalle : detallesAntiguos) {
-                    if (detalle.getId_compra() == id_compra) {
-                        detalleCompraControlador.eliminarDetalleCompra(detalle.getId_compra());
-                    }
-                }
-            }
-
-            // Insertar los nuevos detalles
-            List<DetalleCompra> nuevosDetalles = new ArrayList<>();
-            for (int i = 0; i < rowCount; i++) {
-                int idProducto = (int) modelDetalles.getValueAt(i, 0);
-                float precio = ((Number) modelDetalles.getValueAt(i, 2)).floatValue();
-                Date Ingresado = (Date) modelDetalles.getValueAt(i, 3);
-                Date caducidad = (Date) modelDetalles.getValueAt(i, 4);
-                int Cantidad = (int) modelDetalles.getValueAt(i, 5);
-
-                // Crear y guardar el nuevo detalle
-                DetalleCompra detalle = new DetalleCompra();
-                detalle.setId_compra(id_compra);
-                detalle.setId_compra(idProducto);
-                detalle.setPrecio(precio);
-                detalle.setFe_Ingresado(Ingresado);
-                detalle.setFe_caducidad(caducidad);
-                detalle.setCantidad(Cantidad);
-                nuevosDetalles.add(detalle);
-                detalleCompraControlador.crearDetalleCompra(id_compra, idProducto, Ingresado, caducidad, precio, Cantidad);
-            }
-
-            // Limpiar la tabla de detalles y el formulario
-            tablaDetalles.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID Producto ", "Producto", "Precio ", "FechaIngreso",
-                "FechaCaducidad", "Cantidad", "Subtotal"}));
-            limpiar();
-
-            // Recargar la tabla de compras
-            cargarDatosTablaCompras();
-
-            // Habilitar botones nuevamente
-            btnEliminar.setEnabled(true);
-            btnGuardar.setEnabled(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al actualizar la venta: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnActualizaraccionBotonActualizar
-
-    private void btnGuardaraccionBotonGuardar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaraccionBotonGuardar
-        try {
-            // Obtener el índice seleccionado de Proveedor
-            int indiceid_Proveedor = ComboProveedor.getSelectedIndex();
-            if (indiceid_Proveedor < 0) {
+            // Obtener el índice seleccionado de empleados
+            int indiceProveedor = comboProveedor.getSelectedIndex();
+            if ( indiceProveedor < 0) {
                 JOptionPane.showMessageDialog(this, "Seleccione un empleado.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Obtener la lista de  Preveedor
-            List<Proveedor> proveedor = proveedorControlador.obtenerTodosProveedores();
-            int id_Proveedor = proveedor.get(indiceid_Proveedor).getId_Proveedor();
+            // Obtener la lista de empleados
+            List<Proveedor> proveedores = proveedorControlador.obtenerTodosProveedores();
+            int idProveedor = proveedores.get(indiceProveedor).getId_Proveedor();
 
             // Obtener la fecha seleccionada
-            Date fechaCompra = selectorfechaCompra.getDate();
-            if (fechaCompra == null) {
+            Date fechaVenta = selectorfechaCompra.getDate();
+            if (fechaVenta == null) {
                 JOptionPane.showMessageDialog(this, "Seleccione una fecha.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -741,65 +638,60 @@ public class VistaCompra extends javax.swing.JPanel {
                 return;
             }
 
-            // Crear lista de detalles y calcular total
-            List<DetalleCompra> detalles = new ArrayList<>();
+            // Calcular el total de la compra
             float totalCompra = 0;
             for (int i = 0; i < rowCount; i++) {
-                int id_Producto = (int) modelDetalles.getValueAt(i, 0); // ID Producto como Integer
-                Date Fe_Ingresado = (Date) modelDetalles.getValueAt(i, 2); // ID Producto como Integer
-                Date Fe_caducidad = (Date) modelDetalles.getValueAt(i, 3); // ID Producto como Integer
-                float precio = ((Number) modelDetalles.getValueAt(i, 4)).floatValue(); // Precio Unitario como Float
-                int cantidad = (int) modelDetalles.getValueAt(i, 5); // Cantidad como Integer
-                float subtotal = ((Number) modelDetalles.getValueAt(i, 6)).floatValue(); // Subtotal como Float
-
-                // Crear objeto DetalleCompra
-                DetalleCompra detalle = new DetalleCompra();
-                detalle.setId_Producto(id_Producto);
-                detalle.setFe_Ingresado(Fe_Ingresado);
-                detalle.setFe_caducidad(Fe_caducidad);
-                detalle.setPrecio(precio);
-                detalle.setCantidad(cantidad);
-                detalles.add(detalle);
-
-                totalCompra += subtotal;
+                totalCompra += ((Number) modelDetalles.getValueAt(i, 4)).floatValue(); // Suma los subtotales
             }
 
-            // Crear y guardar la compra
-            compraControlador.crearCompra(id_Proveedor, fechaCompra, totalCompra, detalles);
+            // Actualizar la compra principal
+            compraControlador.actualizarCompra(idCompra, idProveedor, fechaVenta, totalCompra);
 
+            // Eliminar los detalles antiguos de la compra
+            List<DetalleCompra> detallesAntiguos = detalleCompraControlador.obtenerTodosDetallesCompra();
+            if (detallesAntiguos != null) {
+                for (DetalleCompra detalle : detallesAntiguos) {
+                    if (detalle.getId_compra()== idCompra) {
+                        detalleCompraControlador.eliminarDetalleCompra(detalle.getId_DetalleCompra());
+                    }
+                }
+            }
+
+            // Insertar los nuevos detalles
+            for (int i = 0; i < rowCount; i++) {
+                int idProducto = (int) modelDetalles.getValueAt(i, 0);
+                float precio = ((Number) modelDetalles.getValueAt(i, 2)).floatValue();
+                int cantidad = (int) modelDetalles.getValueAt(i, 3);
+
+                // Crear y guardar el nuevo detalle
+                DetalleCompra detalle = new DetalleCompra();
+                detalle.setId_compra(idCompra);
+                detalle.setId_Producto(idProducto);
+                detalle.setCantidad(cantidad);
+                detalle.setPrecio(precio);
+                detalleCompraControlador.crearDetalleCompra(idCompra, idProducto, precio, cantidad);
+            }
+
+            // Limpiar la tabla de detalles y el formulario
+            tablaDetalles.setModel(new DefaultTableModel(new Object[][]{}, new String[]{"ID Producto", "Producto", "Precio ", "Cantidad", "Subtotal"}));
             limpiar();
 
             // Recargar la tabla de compras
             cargarDatosTablaCompras();
 
+            // Habilitar botones nuevamente
+            btnEliminar.setEnabled(true);
+            btnGuardar.setEnabled(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar la compra: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al actualizar la compra: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnGuardaraccionBotonGuardar
+    }//GEN-LAST:event_btnActualizaraccionBotonActualizar
 
     private void btnLimpiaraccionBotonLimpiar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiaraccionBotonLimpiar
         limpiar();
     }//GEN-LAST:event_btnLimpiaraccionBotonLimpiar
 
-    private void jButton2accionBotonQuitardetalle(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2accionBotonQuitardetalle
-        try {
-            // Obtener el índice de la fila seleccionada en tablaDetalles
-            int filaSeleccionada = tablaDetalles.getSelectedRow();
-            if (filaSeleccionada == -1) {
-                JOptionPane.showMessageDialog(this, "Seleccione un detalle para quitar.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Eliminar la fila seleccionada del modelo de la tabla
-            DefaultTableModel model = (DefaultTableModel) tablaDetalles.getModel();
-            model.removeRow(filaSeleccionada);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al quitar el detalle: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton2accionBotonQuitardetalle
-
-    private void btnAgregarAccionBotonAgregar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAccionBotonAgregar
+    private void jButton1accionBotonAgregar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1accionBotonAgregar
         try {
             // Obtener el índice seleccionado del comboProductos
             int indiceSeleccionado = comboProductos.getSelectedIndex();
@@ -813,7 +705,7 @@ public class VistaCompra extends javax.swing.JPanel {
             Producto productoSeleccionado = productos.get(indiceSeleccionado);
 
             // Obtener el precio unitario del producto
-            double Precio_Costo = productoSeleccionado.getPrecio_Costo();
+            Double precioUnitario = productoSeleccionado.getPrecio_Costo();
 
             // Obtener la cantidad ingresada
             String cantidadStr = textCantidad.getText().trim();
@@ -835,16 +727,14 @@ public class VistaCompra extends javax.swing.JPanel {
             }
 
             // Calcular el subtotal
-            double subtotal = Precio_Costo * cantidad;
+            Double subtotal = precioUnitario * cantidad;
 
             // Agregar los datos a la tabla tablaDetalles
             DefaultTableModel model = (DefaultTableModel) tablaDetalles.getModel();
             Object[] row = {
                 productoSeleccionado.getId_producto(),
                 productoSeleccionado.getNombre_prod(),
-                productoSeleccionado.getPrecio_Costo(),
-                productoSeleccionado.getPrecio_Venta(),
-                productoSeleccionado.getFe_caducidad(),
+                precioUnitario,
                 cantidad,
                 subtotal
             };
@@ -858,18 +748,63 @@ public class VistaCompra extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al agregar el producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnAgregarAccionBotonAgregar
+    }//GEN-LAST:event_jButton1accionBotonAgregar
+
+    private void jButton2accionBotonQuitarDetalle(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2accionBotonQuitarDetalle
+        try {
+            // Obtener el índice de la fila seleccionada en tablaDetalles
+            int filaSeleccionada = tablaDetalles.getSelectedRow();
+            if (filaSeleccionada == -1) {
+                JOptionPane.showMessageDialog(this, "Seleccione un detalle para quitar.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Eliminar la fila seleccionada del modelo de la tabla
+            DefaultTableModel model = (DefaultTableModel) tablaDetalles.getModel();
+            model.removeRow(filaSeleccionada);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al quitar el detalle: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton2accionBotonQuitarDetalle
+
+    private void textBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyTyped
+           String textoBusqueda = textBuscar.getText().trim().toLowerCase();
+        List<Compra> compras = compraControlador.obtenerTodasCompras();
+
+        DefaultTableModel modelo = (DefaultTableModel) tablaCompras.getModel();
+        modelo.setRowCount(0);
+
+        if (compras != null) {
+            for (Compra c : compras) {
+                Proveedor proveedor = proveedorControlador.obtenerProveedorPorId(c.getId_Proveedor());
+                String nombrProveedor = proveedor.getNombre_Proveedor()+ " " + proveedor.getTipo_distribuidor();
+
+                if (textoBusqueda.isEmpty() ||
+                    nombrProveedor.toLowerCase().contains(textoBusqueda)) {
+                    Object[] fila = {
+                        c.getFe_compra(),
+                        c.getFe_compra(),
+                        nombrProveedor,
+                        c.getTotal_Compra()
+                    };
+                    modelo.addRow(fila);
+                }
+            }
+        }
+
+    }//GEN-LAST:event_textBuscarKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ComboProveedor;
     private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> comboProductos;
+    private javax.swing.JComboBox<String> comboProveedor;
     private javax.swing.JLabel hora;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -877,15 +812,9 @@ public class VistaCompra extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private com.toedter.calendar.JDateChooser selectorFechaCaducidad;
-    private com.toedter.calendar.JDateChooser selectorFechaVenta;
     private com.toedter.calendar.JDateChooser selectorfechaCompra;
     private javax.swing.JTable tablaCompras;
     private javax.swing.JTable tablaDetalles;

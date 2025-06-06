@@ -30,12 +30,12 @@ public class CompraControlador {
     }
 
     // Método para crear una nueva compra con sus detalles
-    public void crearCompra(int id_Proveedor, Date Fe_compra, float totalCompra, List<DetalleCompra> detalles) {
+    public void crearCompra(int id_Proveedor, Date Fe_compra, float total_Compra, List<DetalleCompra> detalles) {
         try {
             Compra compra = new Compra();
             compra.setId_Proveedor(id_Proveedor);
             compra.setFe_compra(Fe_compra);
-            compra.setTotalCompra(totalCompra);
+            compra.setTotal_Compra(total_Compra);
             int id_compra = DAOcompra.crearCompra(compra);
 
             if (id_compra == -1) {
@@ -63,13 +63,13 @@ public class CompraControlador {
     }
 
     // Método para actualizar una compra existente
-    public void actualizarCompra(int id_compra, int id_Proveedor, Date Fe_compra, float totalCompra) {
+    public void actualizarCompra(int id_compra, int id_Proveedor, Date Fe_compra, float total_Compra) {
         try {
             Compra compra = new Compra();
             compra.setId_compra(id_compra);
             compra.setId_Proveedor(id_Proveedor);
             compra.setFe_compra(Fe_compra);
-            compra.setTotalCompra(totalCompra);
+            compra.setTotal_Compra(total_Compra);
             DAOcompra.actualizarCompra(compra);
             JOptionPane.showMessageDialog(null, "Compra actualizada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
@@ -96,9 +96,8 @@ public class CompraControlador {
         DetalleCompra detalle = new DetalleCompra();
         detalle.setId_DetalleCompra(3); // ID existente
         detalle.setId_compra(1);
-        detalle.setFe_Ingresado(new java.util.Date());
-        detalle.setFe_caducidad(new java.util.Date());
         detalle.setPrecio(80);
+        detalle.setCantidad(30);
         detalles.add(detalle);
 
         // Crear una compra con detalles
@@ -112,7 +111,7 @@ public class CompraControlador {
                 System.out.println("ID: " + comp.getId_compra()
                         + ", Proveedor ID: " + comp.getId_Proveedor()
                         + ", Fe_compra: " + comp.getFe_compra()
-                        + ", Total: " + comp.getTotalCompra());
+                        + ", Total: " + comp.getTotal_Compra());
             }
         }
 

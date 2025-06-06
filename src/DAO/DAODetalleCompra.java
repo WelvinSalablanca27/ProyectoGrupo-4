@@ -24,19 +24,15 @@ public class DAODetalleCompra {
         INSERT INTO DetalleCompra (
              id_compra,
              id_Producto,
-             Fe_Ingresado,
-             Fe_caducidad,
-             precio, 
+             Precio, 
              cantidad
-        ) VALUES (?, ?, ?, ?, ?, ?)""";
+        ) VALUES (?, ?, ?, ?)""";
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
             stmt.setInt(1, detalle.getId_compra());
             stmt.setInt(2, detalle.getId_Producto());
-            stmt.setDate(3, new java.sql.Date(detalle.getFe_Ingresado().getTime()));
-            stmt.setDate(4, new java.sql.Date(detalle.getFe_caducidad().getTime()));
-            stmt.setFloat(5, detalle.getPrecio());
-            stmt.setInt(6, detalle.getCantidad());
+            stmt.setFloat(3, detalle.getPrecio());
+            stmt.setInt(4, detalle.getCantidad());
             stmt.executeUpdate();
 
         }
@@ -52,9 +48,7 @@ public class DAODetalleCompra {
                 detalle.setId_DetalleCompra(rs.getInt("id_DetalleCompra"));
                 detalle.setId_compra(rs.getInt("id_compra"));
                 detalle.setId_Producto(rs.getInt("id_Producto"));
-                detalle.setFe_Ingresado(rs.getDate("Fe_Ingresado"));
-                detalle.setFe_caducidad(rs.getDate("Fe_caducidad"));
-                detalle.setPrecio(rs.getFloat("precio"));
+                detalle.setPrecio(rs.getFloat("Precio"));
                 detalle.setCantidad(rs.getInt("cantidad"));
                 detalles.add(detalle);
             }
@@ -63,16 +57,14 @@ public class DAODetalleCompra {
     }
 
     public void actualizarDetalleCompra(DetalleCompra detalle) throws SQLException {
-        String sql = "UPDATE DetalleCompra SET id_compra = ?, id_producto = ?, Fe_Ingresado = ?, Fe_caducidad  = ?, precio = ?,  cantidad  = ? WHERE id_DetalleCompra = ?";
+        String sql = "UPDATE DetalleCompra SET id_compra = ?, id_producto = ?,   Precio = ?,  cantidad  = ? WHERE id_DetalleCompra = ?";
 
         try (Connection c = ConexionBD.getConnection(); PreparedStatement stmt = c.prepareStatement(sql)) {
             stmt.setInt(1, detalle.getId_compra());
-            stmt.setInt(2, detalle.getId_Producto()); // <-- Faltaba
-            stmt.setDate(3, new java.sql.Date(detalle.getFe_Ingresado().getTime()));
-            stmt.setDate(4, new java.sql.Date(detalle.getFe_caducidad().getTime()));
-            stmt.setFloat(5, detalle.getPrecio());
-            stmt.setInt(6, detalle.getCantidad());
-            stmt.setInt(7, detalle.getId_DetalleCompra()); // <-- Faltaba
+            stmt.setInt(2, detalle.getId_Producto());
+            stmt.setFloat(3, detalle.getPrecio());
+            stmt.setInt(4, detalle.getCantidad());
+            stmt.setInt(5, detalle.getId_DetalleCompra()); // <-- Faltaba
             stmt.executeUpdate();
         }
     }
@@ -96,8 +88,7 @@ public class DAODetalleCompra {
             DetalleCompra detalle = new DetalleCompra();
             detalle.setId_DetalleCompra(1); // ID existente
             detalle.setId_compra(1);
-            detalle.setFe_Ingresado(new java.util.Date());
-            detalle.setFe_caducidad(new java.util.Date());
+            detalle.setId_Producto(1);
             detalle.setPrecio(70);
             detalle.setCantidad(5);
             dao.actualizarDetalleCompra(detalle);
@@ -113,8 +104,7 @@ public class DAODetalleCompra {
             for (DetalleCompra det : detalles) {
                 System.out.println("ID: " + det.getId_DetalleCompra()
                         + ", Compra ID: " + det.getId_compra()
-                        + ", Fecha_Ingreso: " + det.getFe_Ingresado()
-                        + ", Fecha_caducidad: " + det.getFe_caducidad()
+                        + ", Producto ID: " + det.getId_Producto()
                         + ", precio: " + det.getPrecio()
                         + ", Cantidad: " + det.getCantidad());
             }

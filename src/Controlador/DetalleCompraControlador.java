@@ -24,14 +24,12 @@ public class DetalleCompraControlador {
     }
 
     // Método para crear un nuevo detalle de compra
-    public void crearDetalleCompra(int id_compra, int id_Producto, Date Fe_Ingresado, Date Fe_caducidad, float precio, int cantidad) {
+    public void crearDetalleCompra(int id_compra, int id_Producto, float Precio, int cantidad) {
         try {
             DetalleCompra detalle = new DetalleCompra();
             detalle.setId_compra(id_compra);
             detalle.setId_Producto(id_Producto);
-            detalle.setFe_Ingresado(Fe_Ingresado);
-            detalle.setFe_caducidad(Fe_caducidad);
-            detalle.setPrecio(precio);
+            detalle.setPrecio(Precio);
             detalle.setCantidad(cantidad);
             detalleCompraDAO.crearDetalleCompra(detalle);
             JOptionPane.showMessageDialog(null, "Detalle de compra creado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -51,16 +49,13 @@ public class DetalleCompraControlador {
     }
 
     // Método para actualizar un detalle de compra existente
-    public void actualizarDetalleCompra(int id_DetalleCompra, int id_compra, int id_Producto,
-            Date Fe_Ingresado, Date Fe_caducidad, float precio, int cantidad) {
+    public void actualizarDetalleCompra(int id_DetalleCompra, int id_compra, int id_Producto, float Precio, int cantidad) {
         try {
             DetalleCompra detalle = new DetalleCompra();
             detalle.setId_DetalleCompra(id_DetalleCompra);
             detalle.setId_compra(id_compra);
             detalle.setId_Producto(id_Producto);
-            detalle.setFe_Ingresado(Fe_Ingresado);
-            detalle.setFe_caducidad(Fe_caducidad);
-            detalle.setPrecio(precio);
+            detalle.setPrecio(Precio);
             detalle.setCantidad(cantidad);
             detalleCompraDAO.actualizarDetalleCompra(detalle);
             JOptionPane.showMessageDialog(null, "Detalle de compra actualizado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -84,7 +79,7 @@ public class DetalleCompraControlador {
         DetalleCompraControlador controlador = new DetalleCompraControlador();
 
         // Crear un detalle de compra
-        controlador.crearDetalleCompra(1, 1, new Date(), new Date(), 70, 10);
+        controlador.crearDetalleCompra(1, 1, 70, 10);
 
         // Leer todos los detalles de compra
         List<DetalleCompra> detalles = controlador.obtenerTodosDetallesCompra();
@@ -93,8 +88,6 @@ public class DetalleCompraControlador {
             for (DetalleCompra det : detalles) {
                 System.out.println("ID: " + det.getId_DetalleCompra()
                         + ", Compra ID: " + det.getId_compra()
-                        + ", Fecha_Ingreso: " + det.getFe_Ingresado()
-                        + ", Fecha_caducidad: " + det.getFe_caducidad()
                         + ", Precio: " + det.getPrecio()
                         + ", Cantidad: " + det.getCantidad());
 
@@ -102,7 +95,7 @@ public class DetalleCompraControlador {
         }
 
         // Actualizar un detalle de compra (suponiendo que ID 1 existe)
-        controlador.actualizarDetalleCompra(2, 2, 2, new Date(), new Date(), 150, 10);
+        controlador.actualizarDetalleCompra(2, 2, 2, 150, 10);
 
         // Eliminar un detalle de compra
         controlador.eliminarDetalleCompra(2);
