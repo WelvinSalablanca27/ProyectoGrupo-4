@@ -6,7 +6,16 @@ package Vista;
 
 import Controlador.ProveedorControlador;
 import Entidades.Proveedor;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.UnitValue;
+import java.awt.FileDialog;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -72,6 +81,7 @@ public class VistaProveedor extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProveedor = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -188,6 +198,13 @@ public class VistaProveedor extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setText("Generar Reporte");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accionBotonReporte(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -229,7 +246,9 @@ public class VistaProveedor extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(164, 164, 164)
                         .addComponent(jLabel5)))
@@ -260,7 +279,9 @@ public class VistaProveedor extends javax.swing.JPanel {
                     .addComponent(textTipo_distribuidor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -354,9 +375,9 @@ public class VistaProveedor extends javax.swing.JPanel {
         if (proveedor != null) {
             for (Proveedor prov : proveedor) {
                 if (textoBusqueda.isEmpty()
-                    || prov.getNombre_Proveedor().toLowerCase().contains(textoBusqueda)
-                    || prov.getTelefono().toLowerCase().contains(textoBusqueda)
-                    || prov.getTipo_distribuidor().toLowerCase().contains(textoBusqueda)) {
+                        || prov.getNombre_Proveedor().toLowerCase().contains(textoBusqueda)
+                        || prov.getTelefono().toLowerCase().contains(textoBusqueda)
+                        || prov.getTipo_distribuidor().toLowerCase().contains(textoBusqueda)) {
 
                     Object[] fila = {
                         prov.getNombre_Proveedor(),
@@ -370,7 +391,7 @@ public class VistaProveedor extends javax.swing.JPanel {
     }//GEN-LAST:event_campotextBuscarKeyTyped
 
     private void tablaProveedorMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedorMouseMoved
-        if (evt.getClickCount() == 4) {
+        if (evt.getClickCount() == 2) {
 
             int filaSeleccionada = tablaProveedor.getSelectedRow();
 
@@ -399,8 +420,8 @@ public class VistaProveedor extends javax.swing.JPanel {
             id_ProveedorSeleccionada = (Integer) tablaProveedor.getValueAt(filaSeleccionada, 0);
 
             // Obtenemos los datos de esa fila
-            String Nombre   = (String) tablaProveedor.getValueAt(filaSeleccionada, 1);
-            String Telefono   = (String) tablaProveedor.getValueAt(filaSeleccionada, 2);
+            String Nombre = (String) tablaProveedor.getValueAt(filaSeleccionada, 1);
+            String Telefono = (String) tablaProveedor.getValueAt(filaSeleccionada, 2);
             String Tipo = (String) tablaProveedor.getValueAt(filaSeleccionada, 3);
 
             // Cargamos esos datos en los campos de texto
@@ -415,13 +436,82 @@ public class VistaProveedor extends javax.swing.JPanel {
             btnActualizar.setEnabled(true);
         } else {
             javax.swing.JOptionPane.showMessageDialog(
-                this,
-                "Selecciona una fila para editar.",
-                "Aviso",
-                javax.swing.JOptionPane.WARNING_MESSAGE
+                    this,
+                    "Selecciona una fila para editar.",
+                    "Aviso",
+                    javax.swing.JOptionPane.WARNING_MESSAGE
             );
         }
     }//GEN-LAST:event_jButton1accionBotonEditar
+
+    private void accionBotonReporte(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonReporte
+        try {
+            FileDialog dialogoArchivo = new FileDialog((java.awt.Frame) null, "Guardar Reporte PDF", FileDialog.SAVE);
+            dialogoArchivo.setFile("ReporteProveedor.pdf");
+            dialogoArchivo.setVisible(true);
+
+            String ruta = dialogoArchivo.getDirectory();
+            String nombreArchivo = dialogoArchivo.getFile();
+
+            if (ruta == null || nombreArchivo == null) {
+                JOptionPane.showMessageDialog(this, "Operación cancelada", "Información", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            String rutaCompleta = ruta + nombreArchivo;
+            PdfWriter escritor = new PdfWriter(rutaCompleta);
+            PdfDocument pdf = new PdfDocument(escritor);
+            Document documento = new Document(pdf);
+
+            documento.add(new Paragraph("Reporte de Proveedor")
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(20)
+                    .setBold());
+
+            documento.add(new Paragraph("Fwxha:" + new java.util.Date().toString())
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(12));
+
+            Table tabla = new Table(3);
+            tabla.setWidth(UnitValue.createPercentValue(100));
+            tabla.addHeaderCell("ID Proveedor").setBold();
+            tabla.addHeaderCell("Nombre").setBold();
+            tabla.addHeaderCell(" Telefono").setBold();
+            tabla.addHeaderCell("Tipo_distribuidor").setBold();
+
+            List<Proveedor> listaProveedor
+                    = proveedorControlador.obtenerTodosProveedores();
+            if (listaProveedor != null) {
+                for (Proveedor prove : listaProveedor) {
+                    tabla.addCell(String.valueOf(prove.getId_Proveedor()));
+                    tabla.addCell(prove.getNombre_Proveedor());
+                    tabla.addCell(prove.getTelefono());
+                    tabla.addCell(prove.getTipo_distribuidor());
+
+                }
+            }
+
+            documento.add(tabla);
+
+            documento.add(new Paragraph("Notas: Reporte generado automáticamente desde el sistema.")
+                    .setFontSize(10)
+                    .setMarginTop(20));
+
+            documento.close();
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Reporte PDF generado con éxito en: " + rutaCompleta,
+                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al generar el PDF:" + e.getMessage(),
+                    "Error ", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_accionBotonReporte
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -430,6 +520,7 @@ public class VistaProveedor extends javax.swing.JPanel {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

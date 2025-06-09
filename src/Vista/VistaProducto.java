@@ -4,18 +4,22 @@ package Vista;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-
-
-
-
 import Controlador.ProductoControlador;
 import Entidades.Producto;
 import java.sql.Date;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JOptionPane;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.UnitValue;
+import java.awt.FileDialog;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -62,6 +66,18 @@ public class VistaProducto extends javax.swing.JPanel {
         }
     }
 
+    private void limpiar() {
+        textNombreProducto.setText("");
+        textTipo_Produ.setText("");
+        textcantidad_Existente.setText("");
+        textprecio_costo.setText("");
+        textPrecio_Venta.setText("");
+        textfecha_caducidad.setText("");
+
+        btnEliminar.setEnabled(true);
+        btnGuardar.setEnabled(true);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,7 +107,8 @@ public class VistaProducto extends javax.swing.JPanel {
         textBuscar = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         textPrecio_Venta = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        btnLimpiar = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -145,7 +162,7 @@ public class VistaProducto extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaProducto);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 204, 577, 164));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 204, 620, 164));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -192,8 +209,8 @@ public class VistaProducto extends javax.swing.JPanel {
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Fecha Caducidad");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 107, -1, -1));
-        jPanel1.add(textfecha_caducidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(467, 102, 161, 28));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
+        jPanel1.add(textfecha_caducidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 120, 28));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Datos Productos");
@@ -203,11 +220,11 @@ public class VistaProducto extends javax.swing.JPanel {
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
                 btnGuardaraccionBotonGuardar(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(595, 220, 122, 31));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 122, 31));
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -216,7 +233,7 @@ public class VistaProducto extends javax.swing.JPanel {
                 btnEliminaraccionBotonEliminar(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(595, 269, 119, 31));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 119, 31));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnActualizar.setText("Actualizar");
@@ -225,23 +242,37 @@ public class VistaProducto extends javax.swing.JPanel {
                 btnActualizaraccionBontoActualizar(evt);
             }
         });
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(595, 331, 121, 31));
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 121, 31));
 
         textBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textBuscarKeyPressed(evt);
             }
         });
-        jPanel1.add(textBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 161, 329, 31));
+        jPanel1.add(textBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 161, 310, 31));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Precio Venta");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(333, 46, -1, -1));
-        jPanel1.add(textPrecio_Venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(467, 41, 161, 28));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, -1, -1));
+        jPanel1.add(textPrecio_Venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 120, 28));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/291474364_116090381133197_1246855093686710006_n (1)-Photoroom (1).jpg"))); // NOI18N
-        jLabel8.setText("jLabel8");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-220, -170, 1010, 820));
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accionBotonLimpiar(evt);
+            }
+        });
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 303, 120, 30));
+
+        btnReporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnReporte.setText("Generar Reporte");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accionGenerarReporte(evt);
+            }
+        });
+        jPanel1.add(btnReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 40, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -251,120 +282,52 @@ public class VistaProducto extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tablaProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductoMouseClicked
-        // TODO add your handling code here:
-        if (evt.getClickCount() == 2) {
-            int filaSeleccionada = tablaProducto.getSelectedRow();
-            if (filaSeleccionada != -1) {
-                try {
-                    Object idObj = tablaProducto.getValueAt(filaSeleccionada, 0);
-                    id_productoSeleccionada = Integer.parseInt(idObj.toString());
+    private void textBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyPressed
+        String textoBusqueda = textBuscar.getText().trim().toLowerCase();
 
-                    String Nombre_prod = (String) tablaProducto.getValueAt(filaSeleccionada, 1);
-                    String tipo_produ = (String) tablaProducto.getValueAt(filaSeleccionada, 2);
-                    String existencia = String.valueOf(tablaProducto.getValueAt(filaSeleccionada, 3));
-                    String precioCosto = String.valueOf(tablaProducto.getValueAt(filaSeleccionada, 4));
-                    String precioVenta = String.valueOf(tablaProducto.getValueAt(filaSeleccionada, 5));
-                    Object fechaObj = tablaProducto.getValueAt(filaSeleccionada, 6);
-                    String fechaCaducidad = fechaObj != null ? fechaObj.toString() : "";
+        // Obtener la lista de productos
+        List<Producto> productos = controladorProducto.obtenerTodosProductos();
+        DefaultTableModel modelo = (DefaultTableModel) tablaProducto.getModel();
+        modelo.setRowCount(0);
 
-                    textNombreProducto.setText(Nombre_prod);
-                    textTipo_Produ.setText(tipo_produ);
-                    textcantidad_Existente.setText(existencia);
-                    textprecio_costo.setText(precioCosto);
-                    textPrecio_Venta.setText(precioVenta);
-                    textfecha_caducidad.setText(fechaCaducidad);
+        if (productos != null) {
+            for (Producto pro : productos) {
+                // Convertir fecha_caducidad a String para comparación
+                String fechaCaducidadStr = "";
+                if (pro.getFe_caducidad() != null) {
+                    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+                    fechaCaducidadStr = formatoFecha.format(pro.getFe_caducidad());
+                }
 
-                    // Enable buttons appropriately
-                    btnGuardar.setEnabled(false);
-                    btnActualizar.setEnabled(true);
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(this, "Error al obtener los datos de la tabla.",
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                // Verificar si el producto coincide con el filtro de búsqueda
+                if (textoBusqueda.isEmpty()
+                        || pro.getNombre_prod().toLowerCase().contains(textoBusqueda)
+                        || pro.getTipo_Prod().toLowerCase().contains(textoBusqueda)
+                        || String.valueOf(pro.getExistencia_Prod()).contains(textoBusqueda)
+                        || String.valueOf(pro.getPrecio_Costo()).contains(textoBusqueda)
+                        || String.valueOf(pro.getPrecio_Venta()).contains(textoBusqueda)
+                        || fechaCaducidadStr.contains(textoBusqueda)) {
+
+                    // Agregar producto a la tabla si coincide
+                    Object[] fila = {
+                        pro.getId_producto(),
+                        pro.getNombre_prod(),
+                        pro.getTipo_Prod(),
+                        pro.getExistencia_Prod(),
+                        pro.getPrecio_Costo(),
+                        pro.getPrecio_Venta(),
+                        fechaCaducidadStr
+                    };
+
+                    modelo.addRow(fila);
                 }
             }
         }
-    }//GEN-LAST:event_tablaProductoMouseClicked
-
-    private void textNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textNombreProductoActionPerformed
-
-    private void textTipo_ProduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTipo_ProduActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textTipo_ProduActionPerformed
-
-    private void textprecio_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textprecio_costoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textprecio_costoActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnGuardaraccionBotonGuardar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaraccionBotonGuardar
-        // TODO add your handling code here:
-
-        // Retrieve input values
-        String Nombre_prod = textNombreProducto.getText();
-        String tipo_produ = textTipo_Produ.getText();
-        double Existencia_Prod;
-        double precio_costo;
-        double precio_venta;
-        Date fecha_caducidad;
-
-        try {
-            Existencia_Prod = Double.parseDouble(textcantidad_Existente.getText());
-            precio_costo = Float.parseFloat(textprecio_costo.getText());
-            precio_venta = Double.parseDouble(textPrecio_Venta.getText());
-            fecha_caducidad = java.sql.Date.valueOf(textfecha_caducidad.getText());
-        } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, ingrese valores numéricos válidos.",
-                "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        if (!Nombre_prod.isEmpty() && !tipo_produ.isEmpty()) {
-            controladorProducto.crearProducto(Nombre_prod, tipo_produ, Existencia_Prod,
-                precio_costo, precio_venta, fecha_caducidad);
-            cargarDatosTabla();
-
-            textNombreProducto.setText("");
-            textTipo_Produ.setText("");
-            textcantidad_Existente.setText("");
-            textprecio_costo.setText("");
-            textPrecio_Venta.setText("");
-            textfecha_caducidad.setText("");
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnGuardaraccionBotonGuardar
-
-    private void btnEliminaraccionBotonEliminar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaraccionBotonEliminar
-
-        int filaSeleccionada = tablaProducto.getSelectedRow();
-
-        if (filaSeleccionada != -1) {
-            try {
-                // Assuming the ID is stored in column index 0
-                Object idObject = tablaProducto.getValueAt(filaSeleccionada, 0);
-                int id_producto = Integer.parseInt(idObject.toString()); // Safe conversion
-
-                // Delete the product
-                controladorProducto.eliminarProducto(id_producto);
-                cargarDatosTabla();
-            } catch (NumberFormatException e) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Error al obtener el ID del producto.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila para eliminar.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-
-        }
-    }//GEN-LAST:event_btnEliminaraccionBotonEliminar
+    }//GEN-LAST:event_textBuscarKeyPressed
 
     private void btnActualizaraccionBontoActualizar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaraccionBontoActualizar
         // TODO add your handling code here:
@@ -398,7 +361,7 @@ public class VistaProducto extends javax.swing.JPanel {
                 System.out.println("Actualizando producto con ID: " + id_productoSeleccionada);
 
                 controladorProducto.actualizarProducto(id_productoSeleccionada, Nombre_prod, tipo_produ,
-                    Existencia_Prod, precio_Costo, precio_Venta, fechaCaducidadSql);
+                        Existencia_Prod, precio_Costo, precio_Venta, fechaCaducidadSql);
                 cargarDatosTabla();
 
                 limpiarCampos();
@@ -413,67 +376,145 @@ public class VistaProducto extends javax.swing.JPanel {
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "Formato de fecha incorrecto. Usa yyyy-MM-dd.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    // Método para limpiar los campos después de actualizar
+    private void limpiarCampos() {
+        textNombreProducto.setText("");
+        textTipo_Produ.setText("");
+        textcantidad_Existente.setText("");
+        textprecio_costo.setText("");
+        textPrecio_Venta.setText("");
+        textfecha_caducidad.setText("");
+        id_productoSeleccionada = 0; // Re
+    }//GEN-LAST:event_btnActualizaraccionBontoActualizar
+
+    private void btnEliminaraccionBotonEliminar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaraccionBotonEliminar
+
+        int filaSeleccionada = tablaProducto.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            try {
+                // Assuming the ID is stored in column index 0
+                Object idObject = tablaProducto.getValueAt(filaSeleccionada, 0);
+                int id_producto = Integer.parseInt(idObject.toString()); // Safe conversion
+
+                // Delete the product
+                controladorProducto.eliminarProducto(id_producto);
+                cargarDatosTabla();
+            } catch (NumberFormatException e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Error al obtener el ID del producto.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Selecciona una fila para eliminar.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnEliminaraccionBotonEliminar
+
+    private void btnGuardaraccionBotonGuardar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaraccionBotonGuardar
+        // TODO add your handling code here:
+
+        // Retrieve input values
+        String Nombre_prod = textNombreProducto.getText();
+        String tipo_produ = textTipo_Produ.getText();
+        double Existencia_Prod;
+        double precio_costo;
+        double precio_venta;
+        Date fecha_caducidad;
+
+        try {
+            Existencia_Prod = Double.parseDouble(textcantidad_Existente.getText());
+            precio_costo = Float.parseFloat(textprecio_costo.getText());
+            precio_venta = Double.parseDouble(textPrecio_Venta.getText());
+            fecha_caducidad = java.sql.Date.valueOf(textfecha_caducidad.getText());
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, ingrese valores numéricos válidos.",
+                    "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
-        // Método para limpiar los campos después de actualizar
-        private void limpiarCampos() {
+        if (!Nombre_prod.isEmpty() && !tipo_produ.isEmpty()) {
+            controladorProducto.crearProducto(Nombre_prod, tipo_produ, Existencia_Prod,
+                    precio_costo, precio_venta, fecha_caducidad);
+            cargarDatosTabla();
+
             textNombreProducto.setText("");
             textTipo_Produ.setText("");
             textcantidad_Existente.setText("");
             textprecio_costo.setText("");
             textPrecio_Venta.setText("");
             textfecha_caducidad.setText("");
-            id_productoSeleccionada = 0; // Re
-    }//GEN-LAST:event_btnActualizaraccionBontoActualizar
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, llene todos los campos.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnGuardaraccionBotonGuardar
 
-    private void textBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarKeyPressed
-        String textoBusqueda = textBuscar.getText().trim().toLowerCase();
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
-        // Obtener la lista de productos
-        List<Producto> productos = controladorProducto.obtenerTodosProductos();
-        DefaultTableModel modelo = (DefaultTableModel) tablaProducto.getModel();
-        modelo.setRowCount(0);
+    private void textprecio_costoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textprecio_costoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textprecio_costoActionPerformed
 
-        if (productos != null) {
-            for (Producto pro : productos) {
-                // Convertir fecha_caducidad a String para comparación
-                String fechaCaducidadStr = "";
-                if (pro.getFe_caducidad() != null) {
-                    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
-                    fechaCaducidadStr = formatoFecha.format(pro.getFe_caducidad());
-                }
+    private void textTipo_ProduActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTipo_ProduActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textTipo_ProduActionPerformed
 
-                // Verificar si el producto coincide con el filtro de búsqueda
-                if (textoBusqueda.isEmpty()
-                    || pro.getNombre_prod().toLowerCase().contains(textoBusqueda)
-                    || pro.getTipo_Prod().toLowerCase().contains(textoBusqueda)
-                    || String.valueOf(pro.getExistencia_Prod()).contains(textoBusqueda)
-                    || String.valueOf(pro.getPrecio_Costo()).contains(textoBusqueda)
-                    || String.valueOf(pro.getPrecio_Venta()).contains(textoBusqueda)
-                    || fechaCaducidadStr.contains(textoBusqueda)) {
+    private void textNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNombreProductoActionPerformed
 
-                    // Agregar producto a la tabla si coincide
-                    Object[] fila = {
-                        pro.getId_producto(),
-                        pro.getNombre_prod(),
-                        pro.getTipo_Prod(),
-                        pro.getExistencia_Prod(),
-                        pro.getPrecio_Costo(),
-                        pro.getPrecio_Venta(),
-                        fechaCaducidadStr
-                    };
+    private void tablaProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductoMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            int filaSeleccionada = tablaProducto.getSelectedRow();
+            if (filaSeleccionada != -1) {
+                try {
+                    Object idObj = tablaProducto.getValueAt(filaSeleccionada, 0);
+                    id_productoSeleccionada = Integer.parseInt(idObj.toString());
 
-                    modelo.addRow(fila);
+                    String Nombre_prod = (String) tablaProducto.getValueAt(filaSeleccionada, 1);
+                    String tipo_produ = (String) tablaProducto.getValueAt(filaSeleccionada, 2);
+                    String existencia = String.valueOf(tablaProducto.getValueAt(filaSeleccionada, 3));
+                    String precioCosto = String.valueOf(tablaProducto.getValueAt(filaSeleccionada, 4));
+                    String precioVenta = String.valueOf(tablaProducto.getValueAt(filaSeleccionada, 5));
+                    Object fechaObj = tablaProducto.getValueAt(filaSeleccionada, 6);
+                    String fechaCaducidad = fechaObj != null ? fechaObj.toString() : "";
+
+                    textNombreProducto.setText(Nombre_prod);
+                    textTipo_Produ.setText(tipo_produ);
+                    textcantidad_Existente.setText(existencia);
+                    textprecio_costo.setText(precioCosto);
+                    textPrecio_Venta.setText(precioVenta);
+                    textfecha_caducidad.setText(fechaCaducidad);
+
+                    // Enable buttons appropriately
+                    btnGuardar.setEnabled(false);
+                    btnActualizar.setEnabled(true);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "Error al obtener los datos de la tabla.",
+                            "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
-    }//GEN-LAST:event_textBuscarKeyPressed
+    }//GEN-LAST:event_tablaProductoMouseClicked
+
+    private void accionBotonLimpiar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonLimpiar
+        limpiar();
+    }//GEN-LAST:event_accionBotonLimpiar
+
+    private void accionGenerarReporte(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionGenerarReporte
+      
+    }//GEN-LAST:event_accionGenerarReporte
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -481,7 +522,6 @@ public class VistaProducto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaProducto;

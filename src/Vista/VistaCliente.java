@@ -77,7 +77,6 @@ public class VistaCliente extends javax.swing.JPanel {
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnLimpliar = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -239,7 +238,7 @@ public class VistaCliente extends javax.swing.JPanel {
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaraccionBotonActualizar(evt);
+                accionBotonActualizar(evt);
             }
         });
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 120, 34));
@@ -252,10 +251,6 @@ public class VistaCliente extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnLimpliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 116, 34));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/291474364_116090381133197_1246855093686710006_n (1)-Photoroom (1).jpg"))); // NOI18N
-        jLabel8.setText("jLabel8");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-250, -450, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -369,7 +364,7 @@ public class VistaCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEliminaraccionBotonEliminar
 
-    private void btnActualizaraccionBotonActualizar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaraccionBotonActualizar
+    private void accionBotonActualizar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonActualizar
         String Nombre1 = textNombre1.getText();
         String Nombre2 = textNombre2.getText();
         String Apellido1 = textApellido1.getText();
@@ -399,7 +394,7 @@ public class VistaCliente extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, llene los campos.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }
-    }//GEN-LAST:event_btnActualizaraccionBotonActualizar
+    }//GEN-LAST:event_accionBotonActualizar
 
     private void btnLimpliaraccionBotonLimpiar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpliaraccionBotonLimpiar
         textNombre1.setText("");
@@ -426,7 +421,6 @@ public class VistaCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaCliente;
