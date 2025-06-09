@@ -6,7 +6,16 @@ package Vista;
 
 import Controlador.ClienteControlador;
 import Entidades.Cliente;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.UnitValue;
+import java.awt.FileDialog;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -77,6 +86,7 @@ public class VistaCliente extends javax.swing.JPanel {
         btnEliminar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnLimpliar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -238,7 +248,7 @@ public class VistaCliente extends javax.swing.JPanel {
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                accionBotonActualizar(evt);
+                btnActualizaraccionBotonActualizar(evt);
             }
         });
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 120, 34));
@@ -251,6 +261,14 @@ public class VistaCliente extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnLimpliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 116, 34));
+
+        jButton1.setText("Generar Reportes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AccionBotonGenerarReportes(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 170, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -364,7 +382,7 @@ public class VistaCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEliminaraccionBotonEliminar
 
-    private void accionBotonActualizar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonActualizar
+    private void btnActualizaraccionBotonActualizar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaraccionBotonActualizar
         String Nombre1 = textNombre1.getText();
         String Nombre2 = textNombre2.getText();
         String Apellido1 = textApellido1.getText();
@@ -394,7 +412,7 @@ public class VistaCliente extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, llene los campos.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
 
         }
-    }//GEN-LAST:event_accionBotonActualizar
+    }//GEN-LAST:event_btnActualizaraccionBotonActualizar
 
     private void btnLimpliaraccionBotonLimpiar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpliaraccionBotonLimpiar
         textNombre1.setText("");
@@ -408,12 +426,87 @@ public class VistaCliente extends javax.swing.JPanel {
         cargarDatosTabla(); // Reload
     }//GEN-LAST:event_btnLimpliaraccionBotonLimpiar
 
+    private void AccionBotonGenerarReportes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccionBotonGenerarReportes
+        try {
+            FileDialog dialogoArchivo = new FileDialog((java.awt.Frame) null, "Guardar Reporte PDF", FileDialog.SAVE);
+            dialogoArchivo.setFile("ReporteCategorias.pdf");
+            dialogoArchivo.setVisible(true);
+
+            String ruta = dialogoArchivo.getDirectory();
+            String nombreArchivo = dialogoArchivo.getFile();
+
+            if (ruta == null || nombreArchivo == null) {
+                JOptionPane.showMessageDialog(this, "Operación cancelada", "Información", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            String rutaCompleta = ruta + nombreArchivo;
+            PdfWriter escritor = new PdfWriter(rutaCompleta);
+            PdfDocument pdf = new PdfDocument(escritor);
+            Document documento = new Document(pdf);
+
+            documento.add(new Paragraph("Reporte de Categoria")
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(20)
+                    .setBold());
+
+            documento.add(new Paragraph("Fwxha:" + new java.util.Date().toString())
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(12));
+
+            Table tabla = new Table(3);
+            tabla.setWidth(UnitValue.createPercentValue(100));
+            tabla.addHeaderCell("ID Cliente").setBold();
+            tabla.addHeaderCell("Nombre1").setBold();
+            tabla.addHeaderCell("Nombre2").setBold();
+            tabla.addHeaderCell("Apellido1").setBold();
+            tabla.addHeaderCell("Apellido2").setBold();
+            tabla.addHeaderCell("Direccion").setBold();
+            tabla.addHeaderCell("Telefono").setBold();
+
+            List<Cliente> listaCliente
+                    = clienteControlador.obtenerTodosCliente();
+            if (listaCliente != null) {
+                for (Cliente cli : listaCliente) {
+                    tabla.addCell(String.valueOf(cli.getId_Cliente()));
+                    tabla.addCell(cli.getNombre1());
+                    tabla.addCell(cli.getNombre2());
+                    tabla.addCell(cli.getApellido1());
+                    tabla.addCell(cli.getApellido2());
+                    tabla.addCell(cli.getDireccion());
+                    tabla.addCell(cli.getTelefono());
+                }
+            }
+
+            documento.add(tabla);
+
+            documento.add(new Paragraph("Notas: Reporte generado automáticamente desde el sistema.")
+                    .setFontSize(10)
+                    .setMarginTop(20));
+
+            documento.close();
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Reporte PDF generado con éxito en: " + rutaCompleta,
+                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error al generar el PDF:" + e.getMessage(),
+                    "Error ", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_AccionBotonGenerarReportes
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpliar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
