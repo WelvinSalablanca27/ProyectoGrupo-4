@@ -4,7 +4,6 @@
  */
 package Vista;
 
-
 /**
  *
  * @author welvi
@@ -21,6 +20,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         Opciones.addTab("Proveedor", new VistaProveedor());
         Opciones.addTab("Compra", new VistaCompra());
         Opciones.addTab("Venta", new VistaVenta());
+        Opciones.addTab("Consultas Dinamicas", new VistaConsultasDinamicas());
 
     }
 
