@@ -7,7 +7,7 @@ package Vista;
 
 /**
  *
- * @author welvi
+ * @author Edith Cruz
  */
 public class VistaPrincipal extends javax.swing.JFrame {
 
