@@ -97,43 +97,60 @@ public class VistaCliente extends javax.swing.JPanel {
         jLabel1.setText("Nombre1");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 28, -1, -1));
 
+        textNombre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         textNombre1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textNombre1ActionPerformed(evt);
             }
         });
         jPanel1.add(textNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 22, 161, 30));
+
+        textNombre2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(textNombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 64, 161, 30));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 51));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 51));
         jLabel2.setText("Nombre2");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 70, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 51));
         jLabel3.setText("Apellido1");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 28, -1, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 153, 51));
         jLabel4.setText("Apellido2");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 70, -1, -1));
+
+        textApellido2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(textApellido2, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 64, 160, 30));
+
+        textApellido1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(textApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 22, 160, 30));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 153, 51));
         jLabel5.setText("Direccion");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(529, 28, -1, -1));
+
+        textDireccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(textDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 22, 178, 30));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 153, 51));
         jLabel6.setText("Telefono");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(529, 70, -1, -1));
+
+        textTelefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(textTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 64, 178, 30));
 
+        textBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         textBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 textBuscarcampotextoBuscarKeyTyped(evt);
@@ -142,6 +159,7 @@ public class VistaCliente extends javax.swing.JPanel {
         jPanel1.add(textBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 114, 330, 30));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 153, 51));
         jLabel7.setText("Buscar");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 66, -1));
 
@@ -229,7 +247,9 @@ public class VistaCliente extends javax.swing.JPanel {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 742, 250));
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(0, 51, 255));
         btnGuardar.setText("Guardar");
+        btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardaraccionBotonGuardar(evt);
@@ -240,6 +260,7 @@ public class VistaCliente extends javax.swing.JPanel {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 0, 0));
         btnEliminar.setText("Eliminar");
+        btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminaraccionBotonEliminar(evt);
@@ -248,7 +269,9 @@ public class VistaCliente extends javax.swing.JPanel {
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 118, 34));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(0, 51, 255));
         btnActualizar.setText("Actualizar");
+        btnActualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizaraccionBotonActualizar(evt);
@@ -257,7 +280,9 @@ public class VistaCliente extends javax.swing.JPanel {
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 160, 120, 34));
 
         btnLimpliar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpliar.setForeground(new java.awt.Color(0, 51, 255));
         btnLimpliar.setText("Limpiar");
+        btnLimpliar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnLimpliar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpliaraccionBotonLimpiar(evt);
@@ -265,15 +290,16 @@ public class VistaCliente extends javax.swing.JPanel {
         });
         jPanel1.add(btnLimpliar, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 160, 116, 34));
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 204));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 51, 255));
         jButton1.setText("Generar Reportes");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AccionBotonGenerarReportes(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 163, -1, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 130, 40));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/291474364_116090381133197_1246855093686710006_n (1)-Photoroom (1).jpg"))); // NOI18N
         jLabel8.setText("jLabel8");

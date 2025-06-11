@@ -99,7 +99,6 @@ private void limpiar() {
         btnLimpiar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
         ReporteProducto = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         TextBuscador = new javax.swing.JTextField();
@@ -121,26 +120,39 @@ private void limpiar() {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 153, 51));
         jLabel8.setText("Datos de Producto");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
-        jPanel1.add(textNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 220, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, -1, -1));
+
+        textNombreProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        textNombreProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNombreProductoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(textNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 220, 30));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 51));
         jLabel1.setText("Nombre ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(0, 51, 255));
         btnGuardar.setText("Guardar");
+        btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 93, 22));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 93, 22));
 
         btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(0, 51, 255));
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -149,7 +161,9 @@ private void limpiar() {
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 93, 22));
 
         btnBorrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnBorrar.setForeground(new java.awt.Color(255, 0, 0));
         btnBorrar.setText("Borrar");
+        btnBorrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
@@ -158,8 +172,10 @@ private void limpiar() {
         jPanel1.add(btnBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 90, 93, 22));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(0, 51, 255));
         btnActualizar.setText("Actualizar");
         btnActualizar.setToolTipText("");
+        btnActualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
@@ -167,59 +183,69 @@ private void limpiar() {
         });
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, 93, 22));
 
-        btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, 93, 22));
-
         ReporteProducto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        ReporteProducto.setForeground(new java.awt.Color(0, 51, 255));
         ReporteProducto.setText("Reporte");
+        ReporteProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ReporteProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ReporteProductoActionPerformed(evt);
             }
         });
-        jPanel1.add(ReporteProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 140, 100, -1));
+        jPanel1.add(ReporteProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 130, 100, 20));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 153, 51));
         jLabel6.setText("Almacen Rural");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 10, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, -1, -1));
 
+        TextBuscador.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TextBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TextBuscadorKeyTyped(evt);
             }
         });
-        jPanel1.add(TextBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 350, 32));
-        jPanel1.add(TextPrecioCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 220, -1));
-        jPanel1.add(TextTipoproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 220, -1));
-        jPanel1.add(TextExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 220, 20));
-        jPanel1.add(TextPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 220, -1));
-        jPanel1.add(selectorfechaProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 220, -1));
+        jPanel1.add(TextBuscador, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 350, 32));
+
+        TextPrecioCosto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(TextPrecioCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 220, 30));
+
+        TextTipoproducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(TextTipoproducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 220, 30));
+
+        TextExistencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(TextExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 220, 30));
+
+        TextPrecioVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(TextPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 178, 220, 30));
+
+        selectorfechaProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(selectorfechaProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 220, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 51));
         jLabel3.setText("Existencia");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 51));
         jLabel2.setText("Tipo");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 30, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 153, 51));
         jLabel7.setText("Precio  Costo");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 153, 51));
         jLabel5.setText("Fecha de Caducidad");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 153, 51));
         jLabel4.setText("Precio  Venta");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -256,7 +282,7 @@ private void limpiar() {
         });
         jScrollPane1.setViewportView(tablaProductos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 730, 180));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 730, 150));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/291474364_116090381133197_1246855093686710006_n (1)-Photoroom (1).jpg"))); // NOI18N
         jLabel9.setText("jLabel9");
@@ -276,10 +302,6 @@ private void limpiar() {
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
@@ -499,6 +521,10 @@ limpiar();       // TODO add your handling code here:
         }
     }//GEN-LAST:event_ReporteProductoActionPerformed
 
+    private void textNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNombreProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNombreProductoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ReporteProducto;
@@ -509,7 +535,6 @@ limpiar();       // TODO add your handling code here:
     private javax.swing.JTextField TextTipoproducto;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
