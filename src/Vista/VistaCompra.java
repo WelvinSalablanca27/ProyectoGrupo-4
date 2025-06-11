@@ -273,7 +273,7 @@ public class VistaCompra extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tablaDetalles);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 58, 659, 89));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 58, 740, 110));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Proveedor");
@@ -288,8 +288,8 @@ public class VistaCompra extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Precio");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, 20));
-        jPanel1.add(textPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 70, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, 20));
+        jPanel1.add(textPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 70, -1));
 
         btnGuardar.setBackground(new java.awt.Color(153, 255, 255));
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -299,7 +299,7 @@ public class VistaCompra extends javax.swing.JPanel {
                 btnGuardaraccionBotonGuardar(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 342, 119, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 430, 110, -1));
 
         btnEliminar.setBackground(new java.awt.Color(153, 255, 255));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -309,7 +309,7 @@ public class VistaCompra extends javax.swing.JPanel {
                 btnEliminaraccionBotonEliminar(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 342, 119, -1));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, 119, -1));
 
         btnActualizar.setBackground(new java.awt.Color(153, 255, 255));
         btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -319,7 +319,7 @@ public class VistaCompra extends javax.swing.JPanel {
                 btnActualizaraccionBotonActualizar(evt);
             }
         });
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 119, -1));
+        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 430, 119, -1));
 
         btnLimpiar.setBackground(new java.awt.Color(153, 255, 255));
         btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -329,23 +329,23 @@ public class VistaCompra extends javax.swing.JPanel {
                 btnLimpiaraccionBotonLimpiar(evt);
             }
         });
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 342, 119, -1));
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 119, -1));
 
         hora.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         hora.setText("00:00:00");
         jPanel1.add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 6, -1, -1));
 
         comboProductos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(comboProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 29, 81, -1));
+        jPanel1.add(comboProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 29, 90, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Producto");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 6, -1, -1));
-        jPanel1.add(textCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 29, 90, -1));
+        jPanel1.add(textCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 90, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Cantidad");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 6, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 10, -1, -1));
 
         jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -353,10 +353,10 @@ public class VistaCompra extends javax.swing.JPanel {
                 jButton1accionBotonAgregar(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(592, 29, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, -1, -1));
 
         jLabel4.setText("Buscar");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 178, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         tablaCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -386,7 +386,7 @@ public class VistaCompra extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tablaCompras);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 659, 121));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 740, 170));
 
         jButton2.setText("Quitar Detalle");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -394,7 +394,7 @@ public class VistaCompra extends javax.swing.JPanel {
                 jButton2accionBotonQuitarDetalle(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, -1, -1));
         jPanel1.add(selectorfechaCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 130, -1));
 
         textBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -402,23 +402,21 @@ public class VistaCompra extends javax.swing.JPanel {
                 textBuscarKeyTyped(evt);
             }
         });
-        jPanel1.add(textBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 172, 240, 30));
+        jPanel1.add(textBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 240, 30));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/291474364_116090381133197_1246855093686710006_n (1)-Photoroom (1).jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-250, -90, -1, 620));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-240, -50, 1060, 540));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
