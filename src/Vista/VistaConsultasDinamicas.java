@@ -46,6 +46,7 @@ public class VistaConsultasDinamicas extends javax.swing.JPanel {
         btnLimpiar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         textConsulta = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -62,27 +63,38 @@ public class VistaConsultasDinamicas extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tablaResultados);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 129, 745, 278));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 700, 220));
 
+        btnConsultar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnConsultar.setText("Consultar");
+        btnConsultar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultaraccionBotonConsultar(evt);
             }
         });
-        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, 32));
+        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 90, 32));
 
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiaraccionBotonLimpiar(evt);
             }
         });
-        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, -1, 33));
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 90, 33));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Realizar consultas con IA:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 9, -1, -1));
-        jPanel1.add(textConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 31, 302, 32));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+
+        textConsulta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(textConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 302, 32));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/291474364_116090381133197_1246855093686710006_n (1)-Photoroom (1).jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-260, -20, 1030, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,6 +141,7 @@ public class VistaConsultasDinamicas extends javax.swing.JPanel {
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaResultados;

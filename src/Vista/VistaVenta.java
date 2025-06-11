@@ -216,6 +216,7 @@ public class VistaVenta extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaVenta = new javax.swing.JTable();
         selectorfechaVenta = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -234,7 +235,9 @@ public class VistaVenta extends javax.swing.JPanel {
         });
         jPanel1.add(textBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 330, 30));
 
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnLimpiar.setText("Buscar");
+        btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiaraccionBotonLimpiar(evt);
@@ -242,7 +245,9 @@ public class VistaVenta extends javax.swing.JPanel {
         });
         jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(528, 377, 100, 31));
 
+        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardaraccionBotonGuardar(evt);
@@ -250,7 +255,10 @@ public class VistaVenta extends javax.swing.JPanel {
         });
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 377, 100, 31));
 
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 0, 0));
         btnEliminar.setText("Eliminar");
+        btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminaraccionBotonEliminar(evt);
@@ -258,7 +266,9 @@ public class VistaVenta extends javax.swing.JPanel {
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(654, 377, 94, 31));
 
+        btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnActualizar.setText("Actualizar");
+        btnActualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizaraccionBotonActualizar(evt);
@@ -326,19 +336,26 @@ public class VistaVenta extends javax.swing.JPanel {
         jPanel1.add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 6, -1, -1));
 
         comboClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(comboClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 122, 30));
 
         comboProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(comboProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 107, 30));
+
+        textCantidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(textCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 38, 102, 33));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Precio");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(455, 6, -1, -1));
+
+        textPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(textPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 38, 95, 33));
 
         btnAgregarDetalle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAgregarDetalle.setText("Agregar");
+        btnAgregarDetalle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnAgregarDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accionBotonDetalleAgregar(evt);
@@ -350,8 +367,11 @@ public class VistaVenta extends javax.swing.JPanel {
         jLabel7.setText("Buscar");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 56, -1));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 0, 0));
         jButton2.setText("Quitar Detalle");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(644, 214, -1, -1));
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(644, 214, 100, 30));
 
         tablaVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -387,7 +407,13 @@ public class VistaVenta extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tablaVenta);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 258, 742, 111));
+
+        selectorfechaVenta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(selectorfechaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 140, 30));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/291474364_116090381133197_1246855093686710006_n (1)-Photoroom (1).jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-270, 0, 1040, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -397,7 +423,7 @@ public class VistaVenta extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -742,6 +768,7 @@ public class VistaVenta extends javax.swing.JPanel {
     private javax.swing.JLabel hora;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
