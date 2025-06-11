@@ -221,12 +221,10 @@ public class VistaVenta extends javax.swing.JPanel {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 153, 51));
         jLabel3.setText("Fecha ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 6, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 153, 51));
         jLabel4.setText("Cantidad ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(557, 6, -1, -1));
 
@@ -269,7 +267,7 @@ public class VistaVenta extends javax.swing.JPanel {
                 btnEliminaraccionBotonEliminar(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, 94, 31));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, 94, 31));
 
         btnActualizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(0, 51, 255));
@@ -330,17 +328,14 @@ public class VistaVenta extends javax.swing.JPanel {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 88, 742, 109));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 153, 51));
         jLabel6.setText("Cliente");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 6, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 153, 51));
         jLabel1.setText("Producto");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 6, -1, -1));
 
         hora.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        hora.setForeground(new java.awt.Color(0, 153, 51));
         hora.setText("00:00:00");
         jPanel1.add(hora, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 6, -1, -1));
 
@@ -356,7 +351,6 @@ public class VistaVenta extends javax.swing.JPanel {
         jPanel1.add(textCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 38, 102, 33));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 153, 51));
         jLabel5.setText("Precio");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(455, 6, -1, -1));
 
@@ -364,7 +358,7 @@ public class VistaVenta extends javax.swing.JPanel {
         jPanel1.add(textPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 38, 95, 33));
 
         btnAgregarDetalle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAgregarDetalle.setForeground(new java.awt.Color(0, 153, 51));
+        btnAgregarDetalle.setForeground(new java.awt.Color(0, 51, 255));
         btnAgregarDetalle.setText("Agregar");
         btnAgregarDetalle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnAgregarDetalle.addActionListener(new java.awt.event.ActionListener() {
@@ -375,12 +369,10 @@ public class VistaVenta extends javax.swing.JPanel {
         jPanel1.add(btnAgregarDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(652, 37, 96, 33));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 51, 255));
         jLabel7.setText("Buscar");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 56, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 0, 0));
         jButton2.setText("Quitar Detalle");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(644, 214, 100, 30));
@@ -425,7 +417,7 @@ public class VistaVenta extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/291474364_116090381133197_1246855093686710006_n (1)-Photoroom (1).jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-270, 0, 1110, 490));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-270, 0, 1060, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
