@@ -9,6 +9,7 @@ import Entidades.Cliente;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
@@ -285,7 +286,7 @@ public class VistaCliente extends javax.swing.JPanel {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 51, 255));
-        jButton1.setText("Generar Reportes");
+        jButton1.setText(" Reportes");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -316,20 +317,29 @@ public class VistaCliente extends javax.swing.JPanel {
 
     private void textBuscarcampotextoBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBuscarcampotextoBuscarKeyTyped
         String textoBusqueda = textBuscar.getText().trim().toLowerCase();
-        List<Cliente> cliente = clienteControlador.obtenerTodosCliente();
+
+        List<Cliente> listaClientes = clienteControlador.obtenerTodosCliente();
 
         DefaultTableModel modelo = (DefaultTableModel) tablaCliente.getModel();
-        modelo.setRowCount(0);
+        modelo.setRowCount(0); // Limpiar la tabla
 
-        if (cliente != null) {
-            for (Cliente cli : cliente) {
+        if (listaClientes != null) {
+            for (Cliente cli : listaClientes) {
+                // Asegura que ningún campo sea null antes de usar .toLowerCase()
+                String nombre1 = cli.getNombre1() != null ? cli.getNombre1().toLowerCase() : "";
+                String nombre2 = cli.getNombre2() != null ? cli.getNombre2().toLowerCase() : "";
+                String apellido1 = cli.getApellido1() != null ? cli.getApellido1().toLowerCase() : "";
+                String apellido2 = cli.getApellido2() != null ? cli.getApellido2().toLowerCase() : "";
+                String direccion = cli.getDireccion() != null ? cli.getDireccion().toLowerCase() : "";
+                String telefono = cli.getTelefono() != null ? cli.getTelefono().toLowerCase() : "";
+
                 if (textoBusqueda.isEmpty()
-                        || cli.getNombre1().toLowerCase().contains(textoBusqueda)
-                        || cli.getNombre2().toLowerCase().contains(textoBusqueda)
-                        || cli.getApellido1().toLowerCase().contains(textoBusqueda)
-                        || cli.getApellido2().toLowerCase().contains(textoBusqueda)
-                        || cli.getDireccion().toLowerCase().contains(textoBusqueda)
-                        || cli.getTelefono().toLowerCase().contains(textoBusqueda)) {
+                        || nombre1.contains(textoBusqueda)
+                        || nombre2.contains(textoBusqueda)
+                        || apellido1.contains(textoBusqueda)
+                        || apellido2.contains(textoBusqueda)
+                        || direccion.contains(textoBusqueda)
+                        || telefono.contains(textoBusqueda)) {
 
                     Object[] fila = {
                         cli.getId_Cliente(),
@@ -457,7 +467,7 @@ public class VistaCliente extends javax.swing.JPanel {
     private void AccionBotonGenerarReportes(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccionBotonGenerarReportes
         try {
             FileDialog dialogoArchivo = new FileDialog((java.awt.Frame) null, "Guardar Reporte PDF", FileDialog.SAVE);
-            dialogoArchivo.setFile("ReporteCategorias.pdf");
+            dialogoArchivo.setFile("ReporteCliente.pdf");
             dialogoArchivo.setVisible(true);
 
             String ruta = dialogoArchivo.getDirectory();
@@ -467,41 +477,50 @@ public class VistaCliente extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Operación cancelada", "Información", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
+
+            // Verificar y asegurar que el archivo tenga extensión .pdf
+            if (!nombreArchivo.toLowerCase().endsWith(".pdf")) {
+                nombreArchivo += ".pdf";
+            }
+
             String rutaCompleta = ruta + nombreArchivo;
+
             PdfWriter escritor = new PdfWriter(rutaCompleta);
             PdfDocument pdf = new PdfDocument(escritor);
             Document documento = new Document(pdf);
 
-            documento.add(new Paragraph("Reporte de Categoria")
+            documento.add(new Paragraph("Reporte de Cliente")
                     .setTextAlignment(TextAlignment.CENTER)
                     .setFontSize(20)
                     .setBold());
 
-            documento.add(new Paragraph("Fwxha:" + new java.util.Date().toString())
+            // Corrección de la palabra "Fecha"
+            documento.add(new Paragraph("Fecha: " + new java.util.Date().toString())
                     .setTextAlignment(TextAlignment.CENTER)
                     .setFontSize(12));
 
-            Table tabla = new Table(3);
+            Table tabla = new Table(7);
             tabla.setWidth(UnitValue.createPercentValue(100));
-            tabla.addHeaderCell("ID Cliente").setBold();
-            tabla.addHeaderCell("Nombre1").setBold();
-            tabla.addHeaderCell("Nombre2").setBold();
-            tabla.addHeaderCell("Apellido1").setBold();
-            tabla.addHeaderCell("Apellido2").setBold();
-            tabla.addHeaderCell("Direccion").setBold();
-            tabla.addHeaderCell("Telefono").setBold();
 
-            List<Cliente> listaCliente
-                    = clienteControlador.obtenerTodosCliente();
+            // Encabezados
+            tabla.addHeaderCell(new Cell().add(new Paragraph("ID Cliente").setBold()));
+            tabla.addHeaderCell(new Cell().add(new Paragraph("Nombre 1").setBold()));
+            tabla.addHeaderCell(new Cell().add(new Paragraph("Nombre 2").setBold()));
+            tabla.addHeaderCell(new Cell().add(new Paragraph("Apellido 1").setBold()));
+            tabla.addHeaderCell(new Cell().add(new Paragraph("Apellido 2").setBold()));
+            tabla.addHeaderCell(new Cell().add(new Paragraph("Dirección").setBold()));
+            tabla.addHeaderCell(new Cell().add(new Paragraph("Teléfono").setBold()));
+
+            List<Cliente> listaCliente = clienteControlador.obtenerTodosCliente();
             if (listaCliente != null) {
                 for (Cliente cli : listaCliente) {
                     tabla.addCell(String.valueOf(cli.getId_Cliente()));
-                    tabla.addCell(cli.getNombre1());
-                    tabla.addCell(cli.getNombre2());
-                    tabla.addCell(cli.getApellido1());
-                    tabla.addCell(cli.getApellido2());
-                    tabla.addCell(cli.getDireccion());
-                    tabla.addCell(cli.getTelefono());
+                    tabla.addCell(cli.getNombre1() != null ? cli.getNombre1() : "");
+                    tabla.addCell(cli.getNombre2() != null ? cli.getNombre2() : "");
+                    tabla.addCell(cli.getApellido1() != null ? cli.getApellido1() : "");
+                    tabla.addCell(cli.getApellido2() != null ? cli.getApellido2() : "");
+                    tabla.addCell(cli.getDireccion() != null ? cli.getDireccion() : "");
+                    tabla.addCell(cli.getTelefono() != null ? cli.getTelefono() : "");
                 }
             }
 
@@ -515,16 +534,15 @@ public class VistaCliente extends javax.swing.JPanel {
 
             JOptionPane.showMessageDialog(
                     this,
-                    "Reporte PDF generado con éxito en: " + rutaCompleta,
+                    "Reporte PDF generado con éxito en:\n" + rutaCompleta,
                     "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(
                     this,
-                    "Error al generar el PDF:" + e.getMessage(),
-                    "Error ", JOptionPane.ERROR_MESSAGE);
-
+                    "Error al generar el PDF: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AccionBotonGenerarReportes
 

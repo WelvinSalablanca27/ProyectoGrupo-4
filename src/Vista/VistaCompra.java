@@ -322,7 +322,7 @@ public class VistaCompra extends javax.swing.JPanel {
         btnActualizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizaraccionBotonActualizar(evt);
+                accionBotonActualizar(evt);
             }
         });
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 130, 30));
@@ -622,7 +622,7 @@ public class VistaCompra extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnEliminaraccionBotonEliminar
 
-    private void btnActualizaraccionBotonActualizar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizaraccionBotonActualizar
+    private void accionBotonActualizar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accionBotonActualizar
         try {
             // Obtener el índice de la fila seleccionada en tablaVentas
             int filaSeleccionada = tablaCompras.getSelectedRow();
@@ -708,7 +708,7 @@ public class VistaCompra extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al actualizar la compra: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnActualizaraccionBotonActualizar
+    }//GEN-LAST:event_accionBotonActualizar
 
     private void btnLimpiaraccionBotonLimpiar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiaraccionBotonLimpiar
         limpiar();
