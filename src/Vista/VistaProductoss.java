@@ -10,8 +10,6 @@ import DAO.DAOProducto;
 import java.sql.*;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -29,7 +27,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author D23
+ * @author Azter Baez
  */
 public class VistaProductoss extends javax.swing.JPanel {
 private Integer id_productoSeleccionada = null;
